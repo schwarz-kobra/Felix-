@@ -2,31 +2,118 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>AutoParkControl - Anleitung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatischer Parkplatz - Anleitung</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      padding: 2rem;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
     }
-    h1 {
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 40px;
       text-align: center;
     }
-    .image {
-      text-align: center;
-      margin-top: 2rem;
+    header h1 {
+      margin: 0;
+      font-size: 3em;
     }
-    img {
-      width: 90%;
-      max-width: 1000px;
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .lauftext {
+      background-color: #002244;
+      color: #fff;
+      padding: 10px;
+      font-size: 1.1em;
+      text-align: center;
+    }
+    .lauftext marquee {
+      font-style: italic;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    h2 {
+      color: #003366;
+    }
+    footer {
+      text-align: center;
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+    }
+    img.screenshot {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #ccc;
     }
   </style>
 </head>
 <body>
-  <h1>📘 Anleitung zu AutoParkControl</h1>
-  <p>Automatisches Schranken- und Parksensor-System von Felix & Felix Papa. <br>Copyright © by Feliy 2025</p>
-  <div class="image">
-    <img src="Anl.png" alt="Deckblatt Anleitung">
+  <header>
+    <h1>Anleitung: Automatischer Parkplatz</h1>
+    <p>Ein Projekt von Feliy & Felix Papa</p>
+  </header>
+
+  <div class="lauftext">
+    <marquee behavior="scroll" direction="left">Made by Feliy / Felix Papa &copy; 2025</marquee>
   </div>
+
+  <main>
+    <section>
+      <h2>✨ Projektbeschreibung</h2>
+      <p>Dieses Arduino-Projekt steuert eine automatische Schranke mit 2 IR-Sensoren, Servos, Lasersensoren und einem LCD-Display.</p>
+    </section>
+
+    <section>
+      <h2>⚙ Funktionen</h2>
+      <ul>
+        <li>Anzeige auf LCD: 2 von 2 frei, 1 von 2 frei oder BESETZT</li>
+        <li>Lauftext: Made by Feliy / Felix Papa</li>
+        <li>Zufällige Störungen: Piezo + Anzeige</li>
+        <li>Schranke öffnet automatisch bei Erkennung</li>
+        <li>Reset durch Taster bei Störung</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📄 Anleitung</h2>
+      <ol>
+        <li>Baue die Schaltung mit IR-Sensoren, Servo, Display, Piezo & Taster</li>
+        <li>Lade den finalen Arduino-Code hoch</li>
+        <li>Starte den Arduino – das Display zeigt den Status</li>
+        <li>Bei Fahrzeugerkennung → Servo öffnet</li>
+        <li>Bei Störung blinkt Piezo & Text</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>📷 Screenshot</h2>
+      <img src="Anleitung_Deckblatt.png" alt="Deckblatt" class="screenshot">
+    </section>
+
+    <section>
+      <h2>© Copyright & Lizenz</h2>
+      <p>Diese Webseite und das Projekt sind urheberrechtlich geschützt. Verwendung nur mit Genehmigung von Feliy.</p>
+      <p><strong>Copyright by Feliy 2025</strong></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Impressum | Kontakt: felix@beispiel.de</p>
+  </footer>
 </body>
 </html>
