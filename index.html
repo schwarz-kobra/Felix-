@@ -1,158 +1,87 @@
+<!-- login.php -->
+<?php
+session_start();
+
+$admin_user = 'Felix';
+$admin_pass = '16022011F!';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = $_POST['username'] ?? '';
+    $pass = $_POST['password'] ?? '';
+
+    if ($user === $admin_user && $pass === $admin_pass) {
+        $_SESSION['admin'] = true;
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        $error = 'Falsche Anmeldedaten';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatischer Parkplatz - Anleitung</title>
+  <title>Admin Login</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 40px;
-      text-align: center;
-      position: relative;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    .auth-buttons {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .auth-buttons button {
-      background-color: white;
-      color: #003366;
-      border: none;
-      padding: 8px 16px;
-      margin-left: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .lauftext {
-      background-color: #002244;
-      color: #fff;
-      padding: 10px;
-      font-size: 1.1em;
-      text-align: center;
-    }
-    .lauftext marquee {
-      font-style: italic;
-    }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      background-color: #fff;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    h2 {
-      color: #003366;
-    }
-    footer {
-      text-align: center;
-      background-color: #003366;
-      color: white;
-      padding: 20px;
-    }
-    img.screenshot {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 20px auto;
-      border: 2px solid #ccc;
-    }
-    .newsletter {
-      margin-top: 20px;
-    }
-    .newsletter input {
-      padding: 8px;
-      width: 200px;
-      border: none;
-      border-radius: 4px;
-    }
-    .newsletter button {
-      padding: 8px 16px;
-      background-color: white;
-      color: #003366;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+    body { font-family: sans-serif; background: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input { display: block; width: 100%; margin-bottom: 15px; padding: 10px; }
+    button { padding: 10px 20px; background: #003366; color: white; border: none; border-radius: 5px; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <?php if (!empty($error)) echo "<p class='error'>$error</p>"; ?>
+    <form method="POST">
+      <input type="text" name="username" placeholder="Benutzername" required>
+      <input type="password" name="password" placeholder="Passwort" required>
+      <button type="submit">Einloggen</button>
+    </form>
+  </div>
+</body>
+</html>
+
+<!-- dashboard.php -->
+<?php
+session_start();
+if (!isset($_SESSION['admin'])) {
+  header('Location: login.php');
+  exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body { font-family: sans-serif; background: #eef2f7; padding: 20px; }
+    header { background: #003366; color: white; padding: 20px; border-radius: 8px; }
+    .section { margin-top: 30px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    a.logout { float: right; color: white; text-decoration: underline; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Anleitung: Automatischer Parkplatz</h1>
-    <p>Ein Projekt von Feliy & Felix Papa</p>
-    <div class="auth-buttons">
-      <button>Login</button>
-      <button>Registrieren</button>
-    </div>
+    <h1>Willkommen im Admin Dashboard</h1>
+    <a class="logout" href="logout.php">Logout</a>
   </header>
 
-  <div class="lauftext">
-    <marquee behavior="scroll" direction="left">Made by Feliy / Felix Papa &copy; 2025</marquee>
+  <div class="section">
+    <h2>Nutzerverwaltung</h2>
+    <p>Hier kommen später registrierte Nutzer oder andere Admin-Funktionen hin.</p>
   </div>
-
-  <main>
-    <section>
-      <h2>📊 Funktionsbeschreibung</h2>
-      <ul>
-        <li>Das Display zeigt an, wie viele Parkplätze frei sind: "2 von 2 frei", "1 von 2 frei" oder "Besetzt".</li>
-        <li>Die Servos steuern die Schranken. Sie bleiben geschlossen, bis der entsprechende Laser unterbrochen wird.</li>
-        <li>Wenn ein Laser unterbrochen wird, fährt die Schranke hoch und bleibt 5 Sekunden oben, dann wieder zu.</li>
-        <li>Der Piepser gibt Signale bei Störungen, ausgelöst durch den Taster.</li>
-        <li>Der Taster löst bei Druck eine Störungsmeldung aus, die auf dem Display angezeigt wird und einen Piepton erzeugt.</li>
-        <li>Ein Lauftext zeigt dauerhaft "Made by Feliy / Felix Papa Copyright 2025".</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🛠 Bedienungsanleitung</h2>
-      <ol>
-        <li>Stromversorgung anschließen (5V und GND korrekt verbinden).</li>
-        <li>Alle Komponenten gemäß Anschlussplan verbinden.</li>
-        <li>Arduino programmieren mit dem bereitgestellten Code.</li>
-        <li>System starten: Display zeigt Parkplatzstatus.</li>
-        <li>Laser unterbrechen, um Schranke zu öffnen.</li>
-        <li>Taster drücken, um Störungsmeldung zu testen.</li>
-        <li>Bei Problemen bitte die Verkabelung und Spannungen prüfen.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>📷 Screenshot</h2>
-      <img src="Anleitung_Deckblatt.png" alt="Deckblatt" class="screenshot">
-    </section>
-
-    <section>
-      <h2>© Copyright & Lizenz</h2>
-      <p>Diese Webseite und das Projekt sind urheberrechtlich geschützt. Verwendung nur mit Genehmigung von Feliy.</p>
-      <p><strong>Copyright by Feliy 2025</strong></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>Impressum | Kontakt: felix@beispiel.de</p>
-    <div class="newsletter">
-      <p>Für den Newsletter anmelden:</p>
-      <input type="email" placeholder="Deine E-Mail-Adresse">
-      <button>Anmelden</button>
-    </div>
-  </footer>
 </body>
 </html>
+
+<!-- logout.php -->
+<?php
+session_start();
+session_destroy();
+header('Location: login.php');
+exit();
+?>
