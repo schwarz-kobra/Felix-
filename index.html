@@ -1,141 +1,144 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatischer Parkplatz - Anleitung</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arduino Sicherheitsprojekt</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f7f7f7;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
+      color: #333;
     }
     header {
-      background-color: #003366;
+      background-color: #2c3e50;
       color: white;
-      padding: 40px;
+      padding: 1rem;
       text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    .lauftext {
-      background-color: #002244;
-      color: #fff;
-      padding: 10px;
-      font-size: 1.1em;
-      text-align: center;
-    }
-    .lauftext marquee {
-      font-style: italic;
-    }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      background-color: #fff;
     }
     section {
-      margin-bottom: 40px;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h2 {
-      color: #003366;
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    .warning {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffc107;
+      padding: 1rem;
+      margin-bottom: 1rem;
     }
     footer {
       text-align: center;
-      background-color: #003366;
-      color: white;
-      padding: 20px;
-      position: relative;
-    }
-    img.screenshot {
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 20px auto;
-      border: 2px solid #ccc;
-    }
-    .admin-btn {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      background-color: #ffffff;
-      color: #003366;
-      border: 2px solid #003366;
-      padding: 8px 16px;
-      border-radius: 4px;
-      text-decoration: none;
-    }
-    .admin-btn:hover {
-      background-color: #003366;
-      color: white;
+      padding: 2rem;
+      color: gray;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Anleitung: Automatischer Parkplatz</h1>
-    <p>Ein Projekt von Feliy & Felix Papa</p>
+    <h1>🔒 Arduino Sicherheitsanlage mit Laser</h1>
+    <p>Projektbeschreibung, Anleitung & Sicherheit</p>
   </header>
 
-  <div class="lauftext">
-    <marquee behavior="scroll" direction="left">Made by Feliy / Felix Papa &copy; 2025</marquee>
-  </div>
+  <section>
+    <h2>📦 Projektbeschreibung</h2>
+    <p>Ziel: Eine Sicherheitsanlage mit Laserlichtschranke. Wird ein Laserstrahl unterbrochen, ertönt ein Piepton, ein Servo öffnet für 5 Sekunden, ein LCD zeigt „Zugriff erkannt“, und ein optionaler IR-Sensor erkennt zusätzliche Bewegung.</p>
+  </section>
 
-  <main>
-    <section>
-      <h2>✨ Projektbeschreibung</h2>
-      <p>Dieses Arduino-Projekt steuert eine automatische Schranke mit 2 IR-Sensoren, Servos, Lasersensoren und einem LCD-Display.</p>
-    </section>
+  <section>
+    <h2>📋 Komponentenliste</h2>
+    <ul>
+      <li>1x Arduino Uno</li>
+      <li>1x LCD 16x2 mit I2C</li>
+      <li>1x Servo-Motor (SG90)</li>
+      <li>2x Laser-Sensor</li>
+      <li>1x IR-Bewegungssensor (HC-SR501)</li>
+      <li>1x Piezo-Buzzer</li>
+      <li>Jumper-Kabel, Breadboard</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>⚙ Funktionen</h2>
-      <ul>
-        <li>Anzeige auf LCD: 2 von 2 frei, 1 von 2 frei oder BESETZT</li>
-        <li>Lauftext: Made by Feliy / Felix Papa</li>
-        <li>Zufällige Störungen: Piezo + Anzeige</li>
-        <li>Schranke öffnet automatisch bei Erkennung</li>
-        <li>Reset durch Taster bei Störung</li>
-      </ul>
-    </section>
+  <section>
+    <h2>🔌 Anschlussplan</h2>
+    <table>
+      <tr><th>Bauteil</th><th>Arduino-Pin</th></tr>
+      <tr><td>LCD SDA</td><td>A4</td></tr>
+      <tr><td>LCD SCL</td><td>A5</td></tr>
+      <tr><td>Servo</td><td>D9</td></tr>
+      <tr><td>Laser Sensor 1</td><td>D2</td></tr>
+      <tr><td>Laser Sensor 2</td><td>D3</td></tr>
+      <tr><td>IR Sensor</td><td>D4</td></tr>
+      <tr><td>Piezo-Buzzer</td><td>D5</td></tr>
+      <tr><td>GND / VCC</td><td>GND / 5V</td></tr>
+    </table>
+  </section>
 
-    <section>
-      <h2>📄 Anleitung</h2>
-      <ol>
-        <li>Baue die Schaltung mit IR-Sensoren, Servo, Display, Piezo & Taster</li>
-        <li>Lade den finalen Arduino-Code hoch</li>
-        <li>Starte den Arduino – das Display zeigt den Status</li>
-        <li>Bei Fahrzeugerkennung → Servo öffnet</li>
-        <li>Bei Störung blinkt Piezo & Text</li>
-      </ol>
-    </section>
+  <section>
+    <h2>🧠 Funktionsweise</h2>
+    <ol>
+      <li>LCD zeigt: „System bereit“</li>
+      <li>Laser und IR überwachen den Bereich</li>
+      <li>Wird ein Laserstrahl unterbrochen:
+        <ul>
+          <li>Buzzer piept 1 Sekunde</li>
+          <li>Servo bewegt sich (öffnet kurz)</li>
+          <li>LCD zeigt „Zugriff erkannt“</li>
+          <li>Nach 5 Sekunden: Servo zurück, LCD = „System bereit“</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
 
-    <section>
-      <h2>📷 Screenshot</h2>
-      <img src="Anleitung_Deckblatt.png" alt="Deckblatt" class="screenshot">
-    </section>
+  <section>
+    <h2>⚠️ Sicherheitshinweise</h2>
 
-    <section>
-      <h2>© Copyright & Lizenz</h2>
-      <p>Diese Webseite und das Projekt sind urheberrechtlich geschützt. Verwendung nur mit Genehmigung von Feliy.</p>
-      <p><strong>Copyright by Feliy 2025</strong></p>
-    </section>
+    <div class="warning">
+      <strong>Elektrische Sicherheit:</strong><br>
+      – Nur 5 V Versorgung nutzen<br>
+      – Keine Kabel im laufenden Betrieb umstecken<br>
+      – Polung beachten!
+    </div>
 
-    <section>
-      <h2>🔗 Social Media</h2>
-      <p>Folge uns auf TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
-    </section>
-  </main>
+    <div class="warning">
+      <strong>Laser-Gefahr:</strong><br>
+      – Nie in Augenhöhe richten<br>
+      – Nur Klasse-1 oder Klasse-2 Laser verwenden
+    </div>
+
+    <div class="warning">
+      <strong>Stromversorgung:</strong><br>
+      – Verwende bei Problemen mit Display/Servo eine separate 5 V-Stromquelle mit mind. 1 A
+    </div>
+
+    <div class="warning">
+      <strong>Notabschaltung:</strong><br>
+      – Eine Reset-Taste oder Schalter ist empfehlenswert
+    </div>
+  </section>
 
   <footer>
-    <p>Impressum | Kontakt: felix@beispiel.de</p>
-    <a class="admin-btn" href="/admin/login">Admin Dashboard</a>
+    © 2025 Copyright by Felix & Thomas
   </footer>
 </body>
 </html>
