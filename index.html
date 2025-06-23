@@ -15,8 +15,8 @@
     .container { padding: 2em; max-width: 900px; margin: auto; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     footer { text-align: center; padding: 2em; background: #222; color: white; margin-top: 2em; }
     .section { margin-bottom: 2em; }
-    .warnhinweise ul { list-style-type: none; padding: 0; }
-    .warnhinweise li::before { content: "⚠️ "; }
+    .warnbox { background: #fff3cd; border-left: 8px solid #ffa502; padding: 1em; margin-bottom: 1em; }
+    .warnbox h4 { margin-top: 0; color: #b55d00; }
     .kontakt a { color: #0e76a8; }
   </style>
 </head>
@@ -45,15 +45,42 @@
 
   <div class="section warnhinweise">
     <h3>⚠️ Warn- und Sicherheitshinweise</h3>
-    <ul>
-      <li>Nur 5V-Stromquellen verwenden</li>
-      <li>Nie im laufenden Betrieb Kabel umstecken</li>
-      <li>Laser nie auf Augenhöhe richten</li>
-      <li>Servo darf sich frei bewegen können</li>
-      <li>Stabile Verbindungen nutzen – keine wackelnden Kabel</li>
-      <li>Brandschutz beachten – keine Teile abdecken oder überlasten</li>
-      <li>Manueller Not-Aus Schalter empfohlen</li>
-    </ul>
+    <div class="warnbox">
+      <h4>🔌 Elektrische Sicherheit</h4>
+      <ul>
+        <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
+        <li>Richtige Polung (GND und VCC) beachten.</li>
+        <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🔋 Stromquelle</h4>
+      <ul>
+        <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🔥 Laser- und Brandschutz</h4>
+      <ul>
+        <li>Laser nie auf Augenhöhe richten.</li>
+        <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+        <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🧠 Allgemein</h4>
+      <ul>
+        <li>Leitungen stabil und kurz halten.</li>
+        <li>Keine wackelnden Verbindungen verwenden.</li>
+        <li>Servo muss sich frei bewegen können.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🛑 Notabschaltung</h4>
+      <ul>
+        <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="section" id="bauteile">
