@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Arduino Sicherheitsprojekt</title>
+  <title>Arduino Parkplatzsystem</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -61,13 +61,13 @@
 </head>
 <body>
   <header>
-    <h1>🔒 Arduino Sicherheitsanlage mit Laser</h1>
-    <p>Projektbeschreibung, Anleitung & Sicherheit</p>
+    <h1>🔒 Arduino Parkplatz mit Laser-Überwachung</h1>
+    <p>Automatisches Schranken-System mit Anzeige und Sensoren</p>
   </header>
 
   <section>
     <h2>📦 Projektbeschreibung</h2>
-    <p>Ziel: Eine Sicherheitsanlage mit Laserlichtschranke. Wird ein Laserstrahl unterbrochen, ertönt ein Piepton, ein Servo öffnet für 5 Sekunden, ein LCD zeigt „Zugriff erkannt“, und ein optionaler IR-Sensor erkennt zusätzliche Bewegung.</p>
+    <p>Ein automatischer Parkplatz mit Laserlichtschranke: Sobald ein Auto den Laserstrahl durchfährt, wird ein Ton ausgelöst, ein Servo hebt eine Schranke für 5 Sekunden, ein LCD zeigt "Zufahrt erkannt" und ein IR-Sensor erkennt zusätzliche Bewegung.</p>
   </section>
 
   <section>
@@ -102,13 +102,13 @@
     <h2>🧠 Funktionsweise</h2>
     <ol>
       <li>LCD zeigt: „System bereit“</li>
-      <li>Laser und IR überwachen den Bereich</li>
+      <li>Laser und IR überwachen die Einfahrt</li>
       <li>Wird ein Laserstrahl unterbrochen:
         <ul>
           <li>Buzzer piept 1 Sekunde</li>
-          <li>Servo bewegt sich (öffnet kurz)</li>
-          <li>LCD zeigt „Zugriff erkannt“</li>
-          <li>Nach 5 Sekunden: Servo zurück, LCD = „System bereit“</li>
+          <li>Servo hebt Schranke (90°)</li>
+          <li>LCD zeigt „Zufahrt erkannt“</li>
+          <li>Nach 5 Sekunden: Servo zurück (0°), LCD zeigt wieder „System bereit“</li>
         </ul>
       </li>
     </ol>
@@ -132,7 +132,7 @@
 
     <div class="warning">
       <strong>Stromversorgung:</strong><br>
-      – Verwende bei Problemen mit Display/Servo eine separate 5 V-Stromquelle mit mind. 1 A
+      – Bei Problemen mit Display/Servo eine separate 5 V-Stromquelle mit mind. 1 A verwenden
     </div>
 
     <div class="warning">
@@ -151,12 +151,12 @@
     <h2>📬 Kontakt & Impressum</h2>
     <p>📧 E-Mail: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
     <p>🎵 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
-    <p>👤 Verantwortlich: Felix (Privatprojekt)</p>
-    <p>🏠 Standort: Deutschland – keine kommerzielle Nutzung, rein zu Bildungszwecken</p>
+    <p>👤 Verantwortlich: Felix (Schülerprojekt)</p>
+    <p>📍 Schule: <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Straßgang</a></p>
   </section>
 
   <footer>
-    © 2025 Copyright by Felix & Thomas
+    © 2025 Copyright by Felix & Thomas – Made for <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Straßgang</a>
   </footer>
 </body>
 </html>
