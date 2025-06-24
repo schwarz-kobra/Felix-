@@ -1,58 +1,54 @@
-# AutoParkControl 🚗🅿️
+# 🔒 Arduino Parkplatz mit Lasersicherung
 
-Ein vollautomatisiertes Schranken- und Parksystem mit IR-Sensoren, Servos, LCD-Anzeige und akustischem Warnsystem.  
-Erstellt von **Felix & Felix Papa**  
-© Copyright by Feliy 2025
+Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die **Mittelschule Graz Strassgang**.
 
-## 🔧 Funktionen
+🔗 **Live ansehen**: [Hier geht’s zur Website](https://dein-vercel-link.vercel.app)
 
-- LCD-Display mit Live-Anzeige der freien Parkplätze
-- Zwei IR-Sensoren zur Fahrzeugerkennung
-- Zwei Servomotoren für Schranken (Einfahrt & Ausfahrt)
-- Piezo-Buzzer für akustische Warnungen und Störungen
-- Laser + LDR zur Schrankensteuerung
-- Störungsmodus mit Button-Reset
-- Info-Modus mit Urheberanzeige
+---
 
-## 📷 Screenshot
-![Deckblatt](Anl.png)
+## 🚀 Funktionen
 
-## 🧰 Benötigte Hardware
+- Automatische Schrankenöffnung per Lasersensor
+- Bewegungserkennung mit IR-Sensor
+- Warnanzeige auf LCD-Display
+- Piezo-Warnton bei Zutritt
+- Visuelle Anleitung & Upload-Bereich für STL-Dateien und Modelle
+- Suche & Sortierung nach 3D-Modellen, Druckern, Roblox-Skripten u. v. m.
+- DSGVO-konformer Cookie- und Sicherheitshinweis
+- Impressum & Kontakt
 
-- 1x Arduino Uno
-- 1x I2C LCD Display (0x27)
-- 2x IR-Sensoren
-- 2x Servomotoren
-- 2x Laser + 2x Fotowiderstand (LDR)
-- 1x Piezo-Buzzer
-- 1x Taster
-- Externes Netzteil empfohlen!
+---
 
-## 🗂️ Aufbau und Pins
+## 📦 Inhalte der Website
 
-| Komponente         | Pin Arduino |
-|--------------------|-------------|
-| LCD SDA            | A4          |
-| LCD SCL            | A5          |
-| IR Sensor 1 (OUT)  | D2          |
-| IR Sensor 2 (OUT)  | D3          |
-| Servo 1 (Einfahrt) | D6          |
-| Servo 2 (Ausfahrt) | D7          |
-| Laser 1            | D8          |
-| Laser 2            | D9          |
-| LDR 1 (Analog)     | A0          |
-| LDR 2 (Analog)     | A1          |
-| Piezo-Buzzer       | D5          |
-| Taster             | D4          |
+- **Projektbeschreibung**  
+- **Schaltplan & Komponentenliste**
+- **Sicherheits- und Warnhinweise** (in Orange hervorgehoben)
+- **Downloadbereich & Upload-Button**
+- **Suche nach Modellen/Skripten**
+- **Impressum, Kontakt & Datenschutzhinweis**
+- **404-Seite bei Fehlern**
+- **Changelog / Änderungen am Projekt**
 
-## 🛠️ Installation
+---
 
-1. Lade den Code hoch mit der Arduino IDE
-2. Stelle sicher, dass alle Sensoren und Aktoren richtig angeschlossen sind
-3. Nutze ein externes Netzteil für stabile Spannungsversorgung
-4. Button drücken für Info-Anzeige
+## 🏫 Über uns
 
-## ⚖️ Lizenz
+Erstellt im Rahmen eines Schulprojekts an der **[Mittelschule Graz Strassgang](https://www.holzmsgraz.at/)**.  
+Made with ❤️ by **Felix & Thomas**.
 
-MIT License  
-© 2025 by Feliy
+---
+
+## 📬 Kontakt
+
+- 📧 E-Mail: [felixepic91@gmail.com](mailto:felixepic91@gmail.com)
+- 🎥 TikTok: [@blackcobra.officialx](https://www.tiktok.com/@blackcobra.officialx)
+- 📦 GitHub Repository: [github.com/dein-nutzername/arduino-parklaser](https://github.com/...)
+
+---
+
+## 🔒 Copyright
+
+© 2025 by Felix & Thomas  
+Projekt für die Mittelschule Graz Strassgang  
+Alle Rechte vorbehalten.
