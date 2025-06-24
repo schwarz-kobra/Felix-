@@ -56,4 +56,138 @@
       border-radius: 4px;
     }
     .warnbox h4 {
-      margin-top
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+    ul {
+      padding-left: 1.3em;
+      line-height: 1.5;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+      margin-top: 3em;
+      font-size: 0.9em;
+    }
+    .kontakt a {
+      color: #0e76a8;
+      text-decoration: none;
+    }
+    .kontakt a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>🔒 Arduino Parkplatz</h1>
+  <nav>
+    <a href="#start">Start</a>
+    <a href="#anleitung">Anleitung</a>
+    <a href="#bauteile">Bauteile</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero" id="start">
+  <h2>Arduino Parkplatz mit Lasersensoren</h2>
+  <p>Automatisierter Zugang mit Servo, IR-Sensor und LCD – Schulprojekt 2025</p>
+</section>
+
+<section class="container" id="anleitung">
+  <h3>📖 Projektbeschreibung</h3>
+  <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
+
+  <h3>⚠️ Warn- und Sicherheitshinweise</h3>
+  <div class="warnbox">
+    <h4>🔌 Elektrische Sicherheit</h4>
+    <ul>
+      <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
+      <li>Richtige Polung (GND und VCC) beachten.</li>
+      <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🔋 Stromquelle</h4>
+    <ul>
+      <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🔥 Laser- und Brandschutz</h4>
+    <ul>
+      <li>Laser nie auf Augenhöhe richten.</li>
+      <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+      <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🧠 Allgemein</h4>
+    <ul>
+      <li>Leitungen stabil und kurz halten.</li>
+      <li>Keine wackelnden Verbindungen verwenden.</li>
+      <li>Servo muss sich frei bewegen können.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🛑 Notabschaltung</h4>
+    <ul>
+      <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="container" id="bauteile">
+  <h3>📦 Komponentenliste</h3>
+  <ul>
+    <li>Arduino Uno</li>
+    <li>LCD 16x2 mit I2C</li>
+    <li>2x Laser-Sensor</li>
+    <li>IR Sensor</li>
+    <li>Servo SG90</li>
+    <li>Piezo-Buzzer</li>
+    <li>Stromversorgung 5V 1A</li>
+  </ul>
+</section>
+
+<section class="container kontakt" id="kontakt">
+  <h3>📬 Kontakt & Impressum</h3>
+  <p>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
+  <p>🔗 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer">@blackcobra.officialx</a></p>
+  <p>📍 Projekt: Mittelschule Graz Straßgang – <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener noreferrer">Website besuchen</a></p>
+  <p>Made for Mittelschule Graz Straßgang</p>
+</section>
+
+<footer>
+  <p>© 2025 Copyright by Felix & Thomas | Version 1.0</p>
+  <p style="margin-top: 0.3em; font-style: italic; color: #666;">Update kommt demnächst</p>
+
+  <div style="margin-top: 2em; font-size: 0.85em; color: #555; max-width: 900px; margin-left: auto; margin-right: auto; padding: 1em; border-top: 1px solid #ccc;">
+    <h4 style="margin-bottom: 0.3em;">Impressum</h4>
+    <p>Angaben gemäß § 5 TMG:</p>
+    <p>
+      Felix Mustermann<br />
+      Musterstraße 123<br />
+      8010 Graz, Österreich
+    </p>
+    <p>
+      Kontakt:<br />
+      E-Mail: <a href="mailto:felixepic91@gmail.com" style="color:#0e76a8;">felixepic91@gmail.com</a><br />
+      TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer" style="color:#0e76a8;">@blackcobra.officialx</a>
+    </p>
+    <p>
+      Projekt im Rahmen der <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener noreferrer" style="color:#0e76a8;">Mittelschule Graz Straßgang</a>
+    </p>
+    <h4 style="margin-bottom: 0.3em;">Haftungsausschluss (Disclaimer)</h4>
+    <p>
+      Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für Inhalte externer Links. Für die Inhalte der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+    </p>
+    <h4 style="margin-bottom: 0.3em;">Datenschutz</h4>
+    <p>
+      Personenbezogene Daten werden nur auf freiwilliger Basis erhoben und ohne ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+    </p>
+  </div>
+</footer>
+
