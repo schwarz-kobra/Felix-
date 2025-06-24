@@ -1,86 +1,114 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arduino Parkplatz mit Lasersensoren – Schulprojekt Mittelschule Graz Straßgang">
   <title>🔒 Arduino Parkplatz mit Lasern</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f9f9f9;
-      color: #222;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
     }
+
     header {
       background: #222;
-      color: white;
-      padding: 1em 2em;
+      color: #fff;
+      padding: 1em;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
+
+    header h1 {
+      font-size: 1.4em;
+      margin: 0;
+    }
+
     nav a {
-      color: white;
+      color: #fff;
       margin-left: 1em;
       text-decoration: none;
-      font-weight: bold;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     .hero {
+      padding: 3em 2em;
       background: #0e76a8;
       color: white;
       text-align: center;
-      padding: 3em 1em;
     }
+
     .container {
-      max-width: 900px;
-      margin: 2em auto;
-      background: white;
       padding: 2em;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    h3 {
-      border-bottom: 3px solid #0e76a8;
-      padding-bottom: 0.3em;
-      margin-bottom: 1em;
+
+    .section {
+      margin-bottom: 2em;
     }
+
     .warnbox {
       background: #fff3cd;
       border-left: 8px solid #ffa502;
-      padding: 1em 1.5em;
-      margin-bottom: 1.5em;
-      color: #b55d00;
-      border-radius: 4px;
+      padding: 1em;
+      margin-bottom: 1em;
     }
+
     .warnbox h4 {
       margin-top: 0;
-      margin-bottom: 0.5em;
+      color: #b55d00;
     }
-    ul {
-      padding-left: 1.3em;
-      line-height: 1.5;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 1.5em 1em;
-      margin-top: 3em;
-      font-size: 0.9em;
-    }
+
     .kontakt a {
       color: #0e76a8;
-      text-decoration: none;
     }
-    .kontakt a:hover {
-      text-decoration: underline;
+
+    footer {
+      text-align: center;
+      padding: 2em;
+      background: #222;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 0.5em;
+      }
+
+      nav a {
+        display: block;
+        margin: 0.5em 0;
+      }
+
+      .hero h2 {
+        font-size: 1.5em;
+      }
+
+      .container {
+        padding: 1em;
+      }
     }
   </style>
 </head>
 <body>
+
 <header>
   <h1>🔒 Arduino Parkplatz</h1>
   <nav>
@@ -97,97 +125,85 @@
 </section>
 
 <section class="container" id="anleitung">
-  <h3>📖 Projektbeschreibung</h3>
-  <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
+  <div class="section">
+    <h3>📖 Projektbeschreibung</h3>
+    <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
+    <p><strong>🔄 Update kommt demnächst...</strong></p>
+  </div>
 
-  <h3>⚠️ Warn- und Sicherheitshinweise</h3>
-  <div class="warnbox">
-    <h4>🔌 Elektrische Sicherheit</h4>
-    <ul>
-      <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
-      <li>Richtige Polung (GND und VCC) beachten.</li>
-      <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
-    </ul>
+  <div class="section warnhinweise">
+    <h3>⚠️ Warn- und Sicherheitshinweise</h3>
+    <div class="warnbox">
+      <h4>🔌 Elektrische Sicherheit</h4>
+      <ul>
+        <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
+        <li>Richtige Polung (GND und VCC) beachten.</li>
+        <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🔋 Stromquelle</h4>
+      <ul>
+        <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🔥 Laser- und Brandschutz</h4>
+      <ul>
+        <li>Laser nie auf Augenhöhe richten.</li>
+        <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+        <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🧠 Allgemein</h4>
+      <ul>
+        <li>Leitungen stabil und kurz halten.</li>
+        <li>Keine wackelnden Verbindungen verwenden.</li>
+        <li>Servo muss sich frei bewegen können.</li>
+      </ul>
+    </div>
+    <div class="warnbox">
+      <h4>🛑 Notabschaltung</h4>
+      <ul>
+        <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
+      </ul>
+    </div>
   </div>
-  <div class="warnbox">
-    <h4>🔋 Stromquelle</h4>
-    <ul>
-      <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
-    </ul>
-  </div>
-  <div class="warnbox">
-    <h4>🔥 Laser- und Brandschutz</h4>
-    <ul>
-      <li>Laser nie auf Augenhöhe richten.</li>
-      <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
-      <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
-    </ul>
-  </div>
-  <div class="warnbox">
-    <h4>🧠 Allgemein</h4>
-    <ul>
-      <li>Leitungen stabil und kurz halten.</li>
-      <li>Keine wackelnden Verbindungen verwenden.</li>
-      <li>Servo muss sich frei bewegen können.</li>
-    </ul>
-  </div>
-  <div class="warnbox">
-    <h4>🛑 Notabschaltung</h4>
-    <ul>
-      <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
-    </ul>
-  </div>
-</section>
 
-<section class="container" id="bauteile">
-  <h3>📦 Komponentenliste</h3>
-  <ul>
-    <li>Arduino Uno</li>
-    <li>LCD 16x2 mit I2C</li>
-    <li>2x Laser-Sensor</li>
-    <li>IR Sensor</li>
-    <li>Servo SG90</li>
-    <li>Piezo-Buzzer</li>
-    <li>Stromversorgung 5V 1A</li>
-  </ul>
+  <div class="section" id="bauteile">
+    <h3>📦 Komponentenliste</h3>
+    <ul>
+      <li>Arduino Uno</li>
+      <li>LCD 16x2 mit I2C</li>
+      <li>2x Laser-Sensor</li>
+      <li>IR Sensor</li>
+      <li>Servo SG90</li>
+      <li>Piezo-Buzzer</li>
+      <li>Stromversorgung 5V 1A</li>
+    </ul>
+  </div>
 </section>
 
 <section class="container kontakt" id="kontakt">
   <h3>📬 Kontakt & Impressum</h3>
   <p>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
-  <p>🔗 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer">@blackcobra.officialx</a></p>
-  <p>📍 Projekt: Mittelschule Graz Straßgang – <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener noreferrer">Website besuchen</a></p>
-  <p>Made for Mittelschule Graz Straßgang</p>
+  <p>🔗 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
+  <p>🏫 Projekt: Mittelschule Graz Straßgang – <a href="https://www.holzmsgraz.at" target="_blank">Website besuchen</a></p>
+
+  <hr style="margin:2em 0;">
+
+  <p><strong>📄 Impressum & Datenschutz</strong></p>
+  <p>Diese Website ist ein Schulprojekt und enthält keine kommerziellen Inhalte. Alle Inhalte wurden von Felix & Thomas erstellt.</p>
+  <p>Verantwortlich laut § 5 TMG: Felix E. (Kontakt über obenstehende E-Mail-Adresse)</p>
+  <p>Alle verwendeten Logos, Icons und Markennamen gehören den jeweiligen Eigentümern.</p>
+  <p>Diese Website speichert keine personenbezogenen Daten und verwendet keine Cookies.</p>
+  <p>Letzte Änderung: Juni 2025 | Version: 1.0</p>
 </section>
 
 <footer>
-  <p>© 2025 Copyright by Felix & Thomas | Version 1.0</p>
-  <p style="margin-top: 0.3em; font-style: italic; color: #666;">Update kommt demnächst</p>
-
-  <div style="margin-top: 2em; font-size: 0.85em; color: #555; max-width: 900px; margin-left: auto; margin-right: auto; padding: 1em; border-top: 1px solid #ccc;">
-    <h4 style="margin-bottom: 0.3em;">Impressum</h4>
-    <p>Angaben gemäß § 5 TMG:</p>
-    <p>
-      Felix Mustermann<br />
-      Musterstraße 123<br />
-      8010 Graz, Österreich
-    </p>
-    <p>
-      Kontakt:<br />
-      E-Mail: <a href="mailto:felixepic91@gmail.com" style="color:#0e76a8;">felixepic91@gmail.com</a><br />
-      TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer" style="color:#0e76a8;">@blackcobra.officialx</a>
-    </p>
-    <p>
-      Projekt im Rahmen der <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener noreferrer" style="color:#0e76a8;">Mittelschule Graz Straßgang</a>
-    </p>
-    <h4 style="margin-bottom: 0.3em;">Haftungsausschluss (Disclaimer)</h4>
-    <p>
-      Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für Inhalte externer Links. Für die Inhalte der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-    </p>
-    <h4 style="margin-bottom: 0.3em;">Datenschutz</h4>
-    <p>
-      Personenbezogene Daten werden nur auf freiwilliger Basis erhoben und ohne ausdrückliche Zustimmung nicht an Dritte weitergegeben.
-    </p>
-  </div>
+  <p>© 2025 Felix & Thomas – Schulprojekt Mittelschule Graz Straßgang</p>
 </footer>
 
+</body>
+</html>
