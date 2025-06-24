@@ -2,116 +2,166 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Arduino Parkplatz mit Lasersensoren – Schulprojekt Mittelschule Graz Straßgang" />
-  <title>🔒 Arduino Parkplatz & Modell-Upload</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔒 Arduino Parkplatz mit Lasern</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; }
-    header, footer { background: #222; color: white; padding: 1em 2em; }
-    nav a { color: white; margin: 0 1em; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    .hero { background: #0078D7; color: white; text-align: center; padding: 3em 1em; }
-    .container { max-width: 1000px; margin: auto; background: white; padding: 2em; }
-    .section { margin-bottom: 2em; }
-    .warnbox { background: #fff3cd; border-left: 8px solid #ffa502; padding: 1em; margin: 1em 0; }
-    .warnbox h4 { color: #b55d00; margin-top: 0; }
-    .upload-box { background: #f0f0f0; border: 2px dashed #aaa; padding: 2em; text-align: center; }
-    .upload-box input { margin-top: 1em; }
-    footer p { margin: 0.5em 0; }
-    .kontakt a { color: #0078D7; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 1em 2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin-left: 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background: #0e76a8;
+      color: white;
+      text-align: center;
+      padding: 3em 1em;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2em auto;
+      background: white;
+      padding: 2em;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h3 {
+      border-bottom: 3px solid #0e76a8;
+      padding-bottom: 0.3em;
+      margin-bottom: 1em;
+    }
+    .warnbox {
+      background: #fff3cd;
+      border-left: 8px solid #ffa502;
+      padding: 1em 1.5em;
+      margin-bottom: 1.5em;
+      color: #b55d00;
+      border-radius: 4px;
+    }
+    .warnbox h4 {
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+    ul {
+      padding-left: 1.3em;
+      line-height: 1.5;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+      margin-top: 3em;
+      font-size: 0.9em;
+    }
+    .kontakt a {
+      color: #0e76a8;
+      text-decoration: none;
+    }
+    .kontakt a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-
 <header>
   <h1>🔒 Arduino Parkplatz</h1>
   <nav>
     <a href="#start">Start</a>
     <a href="#anleitung">Anleitung</a>
-    <a href="#upload">Upload</a>
+    <a href="#bauteile">Bauteile</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 </header>
 
 <section class="hero" id="start">
-  <h2>Arduino Parkplatz mit Lasersicherung</h2>
-  <p>Automatisierter Zugang & 3D-Modell-Upload – Schulprojekt 2025</p>
+  <h2>Arduino Parkplatz mit Lasersensoren</h2>
+  <p>Automatisierter Zugang mit Servo, IR-Sensor und LCD – Schulprojekt 2025</p>
 </section>
 
 <section class="container" id="anleitung">
-  <div class="section">
-    <h3>📖 Projektbeschreibung</h3>
-    <p>Ein Arduino-System erkennt Fahrzeuge mit Lasersensoren, öffnet automatisch eine Schranke mit Servo, zeigt den Status auf einem LCD und warnt mit Piezo. Ergänzt um Upload-Funktion für Modelle & Skripte.</p>
-  </div>
+  <h3>📖 Projektbeschreibung</h3>
+  <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
 
-  <div class="section">
-    <h3>⚠️ Warn- und Sicherheitshinweise</h3>
-    <div class="warnbox">
-      <h4>🔌 Elektrische Sicherheit</h4>
-      <ul>
-        <li>Nur 5 V über Arduino oder Netzteil verwenden.</li>
-        <li>Nie im Betrieb umstecken.</li>
-      </ul>
-    </div>
-    <div class="warnbox">
-      <h4>🔋 Stromquelle</h4>
-      <ul><li>Separate 5V-Stromquelle empfohlen (mind. 1 A).</li></ul>
-    </div>
-    <div class="warnbox">
-      <h4>🔥 Laser- und Brandschutz</h4>
-      <ul>
-        <li>Laser nie auf Augen richten.</li>
-        <li>Keine Abdeckung – Überhitzungsgefahr!</li>
-      </ul>
-    </div>
-    <div class="warnbox">
-      <h4>🧠 Allgemein</h4>
-      <ul>
-        <li>Stabile Leitungen, kurze Kabel.</li>
-        <li>Servo darf nicht blockieren.</li>
-      </ul>
-    </div>
-    <div class="warnbox">
-      <h4>🛑 Notabschaltung</h4>
-      <ul><li>Empfehlung: Reset- oder Ausschalter verbauen.</li></ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h3>📦 Komponentenliste</h3>
+  <h3>⚠️ Warn- und Sicherheitshinweise</h3>
+  <div class="warnbox">
+    <h4>🔌 Elektrische Sicherheit</h4>
     <ul>
-      <li>Arduino Uno</li>
-      <li>LCD 16x2 mit I2C</li>
-      <li>Laser-Sensoren</li>
-      <li>IR-Sensor</li>
-      <li>Servo SG90</li>
-      <li>Piezo-Buzzer</li>
+      <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
+      <li>Richtige Polung (GND und VCC) beachten.</li>
+      <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🔋 Stromquelle</h4>
+    <ul>
+      <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🔥 Laser- und Brandschutz</h4>
+    <ul>
+      <li>Laser nie auf Augenhöhe richten.</li>
+      <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+      <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🧠 Allgemein</h4>
+    <ul>
+      <li>Leitungen stabil und kurz halten.</li>
+      <li>Keine wackelnden Verbindungen verwenden.</li>
+      <li>Servo muss sich frei bewegen können.</li>
+    </ul>
+  </div>
+  <div class="warnbox">
+    <h4>🛑 Notabschaltung</h4>
+    <ul>
+      <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
     </ul>
   </div>
 </section>
 
-<section class="container" id="upload">
-  <div class="section">
-    <h3>📤 Modell & Datei-Upload</h3>
-    <div class="upload-box">
-      <p>Hier kannst du deine STL-Dateien, Roblox-Skripte oder andere Projektdateien hochladen.</p>
-      <input type="file" multiple />
-    </div>
-  </div>
+<section class="container" id="bauteile">
+  <h3>📦 Komponentenliste</h3>
+  <ul>
+    <li>Arduino Uno</li>
+    <li>LCD 16x2 mit I2C</li>
+    <li>2x Laser-Sensor</li>
+    <li>IR Sensor</li>
+    <li>Servo SG90</li>
+    <li>Piezo-Buzzer</li>
+    <li>Stromversorgung 5V 1A</li>
+  </ul>
 </section>
 
 <section class="container kontakt" id="kontakt">
   <h3>📬 Kontakt & Impressum</h3>
   <p>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
-  <p>TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
-  <p>Projektseite: <a href="https://www.holzmsgraz.at" target="_blank">Mittelschule Graz Straßgang</a></p>
-  <p>© 2025 Felix & Thomas – Schulprojekt</p>
+  <p>🔗 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer">@blackcobra.officialx</a></p>
+  <p>📍 Projekt: Mittelschule Graz Straßgang – <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener noreferrer">Website besuchen</a></p>
+  <p>Made for Mittelschule Graz Straßgang</p>
 </section>
 
 <footer>
-  <p>Made for Mittelschule Graz Straßgang | DSGVO-konform | Impressum enthalten</p>
+  <p>© 2025 Copyright by Felix & Thomas | Version 1.0</p>
 </footer>
-
 </body>
 </html>
