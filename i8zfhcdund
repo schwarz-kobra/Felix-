@@ -1,0 +1,10 @@
+# Terminal öffnen und ins Repo wechseln
+cd dein-repo-name
+
+# Datei löschen
+rm pfad/zur/deiner-datei.mp4
+
+# Änderungen speichern
+git add .
+git commit -m "remove mp4 file"
+git push
