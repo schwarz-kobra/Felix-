@@ -2,170 +2,88 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🔒 Arduino Parkplatz</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background-color: #fafafa;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
       color: #222;
-      line-height: 1.6;
     }
     header {
-      background-color: #0e76a8;
-      padding: 1.2em 2em;
+      background-color: black;
       color: white;
-      font-size: 1.9rem;
-      font-weight: 700;
-      text-align: center;
-      letter-spacing: 1.2px;
+      padding: 0.5rem 2rem;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     nav {
-      background: #144d7e;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0.9em 0;
-      font-weight: 600;
+      background-color: black;
+      padding: 0.5rem 2rem;
     }
     nav a {
       color: white;
+      margin-right: 1.5rem;
       text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s;
+      font-weight: bold;
     }
-    nav a:hover {
-      color: #a3d2ff;
+    .hero {
+      background-color: #0e76a8;
+      color: white;
+      padding: 2rem;
+      text-align: center;
     }
     main {
-      max-width: 900px;
+      max-width: 800px;
       margin: 2rem auto;
-      background: white;
-      padding: 2rem 2.5rem;
-      box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
-      border-radius: 8px;
-    }
-    section {
-      margin-bottom: 2.5rem;
+      padding: 0 1rem;
     }
     h2 {
       color: #0e76a8;
-      margin-bottom: 0.6rem;
-      border-bottom: 3px solid #0e76a8;
+      border-bottom: 2px solid #0e76a8;
       padding-bottom: 0.3rem;
     }
-    h3 {
-      color: #144d7e;
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      margin-left: 1.2rem;
-    }
-    .warnbox {
-      background-color: #fff3cd;
-      border-left: 6px solid #ffa502;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.8rem;
+    .warn-hinweis {
+      background-color: #ffa502;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid darkorange;
       border-radius: 4px;
-      color: #7a4b00;
+      color: #222;
     }
-    .warnbox strong {
-      display: block;
-      margin-bottom: 0.4rem;
+    .component-list {
+      background-color: #fff;
+      border-left: 6px solid #0e76a8;
+      padding: 1rem;
+      margin-bottom: 2rem;
     }
     footer {
-      background-color: #144d7e;
+      background-color: black;
       color: white;
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
-      letter-spacing: 0.6px;
-    }
-    footer a {
-      color: #a3d2ff;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    /* Video Buttons */
-    .video-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1rem;
     }
     .video-buttons button {
       background: #0e76a8;
       color: white;
       border: none;
-      border-radius: 6px;
       padding: 0.8rem 1.4rem;
-      font-weight: 600;
+      margin: 0.5rem;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s ease;
-      min-width: 150px;
-    }
-    .video-buttons button:hover {
-      background: #084c75;
-    }
-    /* Fullscreen Video Overlay */
-    #videoOverlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 10000;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-    #videoOverlay blockquote {
-      width: 100%;
-      max-width: 900px;
-      height: 90vh;
-      border-radius: 10px;
-      box-shadow: 0 0 20px black;
-      background: black;
-      margin: 0 auto;
-    }
-    #closeVideoBtn {
-      position: fixed;
-      top: 15px;
-      right: 25px;
-      font-size: 2.8rem;
-      color: white;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 10001;
-      user-select: none;
-    }
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      main {
-        padding: 1.5rem 1.5rem;
-      }
-      .video-buttons {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .video-buttons button {
-        width: 100%;
-        max-width: 100%;
-      }
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-<header>🔒 Arduino Parkplatz</header>
-
+<header>
+  🔒 Arduino Parkplatz
+</header>
 <nav>
   <a href="#start">Start</a>
   <a href="#anleitung">Anleitung</a>
@@ -173,134 +91,101 @@
   <a href="#kontakt">Kontakt</a>
 </nav>
 
+<div class="hero">
+  <h1>Arduino Parkplatz mit Lasersensoren</h1>
+  <p>Automatisierter Zugang mit Servo, IR-Sensor und LCD – Schulprojekt 2025</p>
+</div>
+
 <main>
   <section id="start">
-    <h2>Arduino Parkplatz mit Lasersensoren</h2>
-    <p><strong>Automatisierter Zugang mit Servo, IR-Sensor und LCD – Schulprojekt 2025</strong></p>
-  </section>
-
-  <section id="anleitung">
-    <h3>📖 Projektbeschreibung</h3>
+    <h2>📖 Projektbeschreibung</h2>
     <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
     <p><em>🔄 Update kommt demnächst...</em></p>
+  </section>
 
-    <div class="warnbox" role="alert">
-      <strong>⚠️ Warn- und Sicherheitshinweise</strong>
-      <p><strong>🔌 Elektrische Sicherheit</strong></p>
+  <section id="warnhinweise">
+    <h2>⚠️ Warn- und Sicherheitshinweise</h2>
+
+    <div class="warn-hinweis">
+      <strong>🔌 Elektrische Sicherheit</strong>
       <ul>
-        <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
-        <li>Richtige Polung (GND und VCC) beachten.</li>
-        <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+        <li>Nur 5 V vom Arduino oder geregeltem Netzteil verwenden.</li>
+        <li>Polung (GND und VCC) beachten.</li>
+        <li>Keine Kabel bei Betrieb umstecken.</li>
       </ul>
-      <p><strong>🔋 Stromquelle</strong></p>
+    </div>
+
+    <div class="warn-hinweis">
+      <strong>🔋 Stromquelle</strong>
       <ul>
-        <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+        <li>Separate 5 V-Stromquelle mit mindestens 1 A empfohlen.</li>
       </ul>
-      <p><strong>🔥 Laser- und Brandschutz</strong></p>
+    </div>
+
+    <div class="warn-hinweis">
+      <strong>🔥 Laser- und Brandschutz</strong>
       <ul>
-        <li>Laser nie auf Augenhöhe richten.</li>
-        <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+        <li>Laser nie auf Augen richten.</li>
+        <li>Nur Klasse-1 oder Klasse-2 Laser einsetzen.</li>
         <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
       </ul>
-      <p><strong>🧠 Allgemein</strong></p>
+    </div>
+
+    <div class="warn-hinweis">
+      <strong>🧠 Allgemein</strong>
       <ul>
-        <li>Leitungen stabil und kurz halten.</li>
-        <li>Keine wackelnden Verbindungen verwenden.</li>
-        <li>Servo muss sich frei bewegen können.</li>
+        <li>Kurze, stabile Leitungen verwenden.</li>
+        <li>Keine wackelnden Steckverbindungen.</li>
+        <li>Servo darf sich frei bewegen können.</li>
       </ul>
-      <p><strong>🛑 Notabschaltung</strong></p>
+    </div>
+
+    <div class="warn-hinweis">
+      <strong>🛑 Notabschaltung</strong>
       <ul>
-        <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
+        <li>Ein Schalter zur Notabschaltung wird empfohlen.</li>
       </ul>
     </div>
   </section>
 
   <section id="bauteile">
-    <h3>📦 Komponentenliste</h3>
-    <ul>
-      <li>Arduino Uno</li>
-      <li>LCD 16x2 mit I2C</li>
-      <li>2x Laser-Sensor</li>
-      <li>IR Sensor</li>
-      <li>Servo SG90</li>
-      <li>Piezo-Buzzer</li>
-      <li>Stromversorgung 5V 1A</li>
-    </ul>
+    <h2>📦 Komponentenliste</h2>
+    <div class="component-list">
+      <ul>
+        <li>Arduino Uno</li>
+        <li>LCD 16x2 mit I2C</li>
+        <li>2x Laser-Sensor</li>
+        <li>IR Sensor</li>
+        <li>Servo SG90</li>
+        <li>Piezo-Buzzer</li>
+        <li>Stromversorgung 5V 1A</li>
+      </ul>
+    </div>
   </section>
 
   <section id="kontakt">
-    <h3>📬 Kontakt</h3>
-    <ul>
-      <li>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></li>
-      <li>TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank" rel="noopener noreferrer">@blackcobra.officialx</a></li>
-      <li>Projekt: Mittelschule Graz Straßgang – <a href="#" aria-label="Website besuchen">Website besuchen</a></li>
-    </ul>
+    <h2>📬 Kontakt</h2>
+    <p>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
+    <p>TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
 
     <h3>🎥 Videos</h3>
     <div class="video-buttons">
-      <button onclick="openVideo('7498327481569660190')">Video 1</button>
-      <button onclick="openVideo('7493832615292865838')">Video 2</button>
-      <button onclick="openVideo('7493832615292865838')">Video 3</button>
+      <button onclick="window.open('https://www.tiktok.com/@qwiingel/video/7498327481569660190', '_blank')">Video 1</button>
+      <button onclick="window.open('https://www.tiktok.com/@qwiingel/video/7493832615292865838', '_blank')">Video 2</button>
+      <button onclick="window.open('https://www.tiktok.com/@qwiingel/video/7493832615292865838', '_blank')">Video 3</button>
     </div>
   </section>
 </main>
 
 <footer>
   <p>📄 Impressum & Datenschutz</p>
-  <p>Diese Website ist ein Schulprojekt und enthält keine kommerziellen Inhalte. Alle Inhalte wurden von Felix & Thomas erstellt.</p>
-  <p>Verantwortlich laut § 5 TMG: Felix E. (Kontakt über obenstehende E-Mail-Adresse)</p>
-  <p>Alle verwendeten Logos, Icons und Markennamen gehören den jeweiligen Eigentümern.</p>
-  <p>Diese Website speichert keine personenbezogenen Daten und verwendet keine Cookies.</p>
+  <p>Diese Website ist ein Schulprojekt und enthält keine kommerziellen Inhalte.</p>
+  <p>Verantwortlich laut § 5 TMG: Felix E. (Kontakt per E-Mail)</p>
+  <p>Alle Marken und Inhalte gehören den jeweiligen Eigentümern.</p>
+  <p>Keine Speicherung personenbezogener Daten, keine Cookies.</p>
   <p>Letzte Änderung: Juni 2025 | Version: 1.0</p>
   <p>© 2025 Felix & Thomas – Schulprojekt Mittelschule Graz Straßgang</p>
 </footer>
-
-<!-- Fullscreen Video Overlay -->
-<div id="videoOverlay" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
-  <button id="closeVideoBtn" aria-label="Video schließen" onclick="closeVideo()">&times;</button>
-</div>
-
-<script async src="https://www.tiktok.com/embed.js"></script>
-<script>
-  const videoOverlay = document.getElementById('videoOverlay');
-  const body = document.body;
-
-  function openVideo(videoId) {
-    const embedHTML = `
-      <blockquote class="tiktok-embed" 
-        cite="https://www.tiktok.com/@qwiingel/video/${videoId}" 
-        data-video-id="${videoId}" 
-        style="max-width: 100%; min-width: 300px; margin: auto;">
-        <section>Loading video...</section>
-      </blockquote>
-    `;
-    videoOverlay.innerHTML = '<button id="closeVideoBtn" aria-label="Video schließen" onclick="closeVideo()">&times;</button>' + embedHTML;
-
-    // TikTok Script neu laden, um Embed zu initialisieren
-    const script = document.createElement('script');
-    script.src = "https://www.tiktok.com/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    videoOverlay.style.display = 'flex';
-    videoOverlay.setAttribute('aria-hidden', 'false');
-    body.style.overflow = 'hidden';
-    videoOverlay.focus();
-  }
-
-  function closeVideo() {
-    videoOverlay.style.display = 'none';
-    videoOverlay.setAttribute('aria-hidden', 'true');
-    videoOverlay.innerHTML = ''; // Video entfernen zum Stoppen
-    body.style.overflow = 'auto';
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape" && videoOverlay.style.display === 'flex') {
-      closeVideo();
-    }
-  });
-</script>
 
 </body>
 </html>
