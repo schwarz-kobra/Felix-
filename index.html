@@ -310,4 +310,53 @@
   <p>Verantwortlich laut § 5 TMG: Felix E. (Kontakt über obenstehende E-Mail-Adresse)</p>
   <p>Alle verwendeten Logos, Icons und Markennamen gehören den jeweiligen Eigentümern.</p>
   <p>Diese Website speichert keine personenbezogenen Daten und verwendet keine Cookies.</p>
-  <p>Letzte Änderung: Juni 2025 | Version: 
+  <p>Letzte Änderung: Juni 2025 | Version: 1.0</p>
+</footer>
+
+<!-- Button für Video -->
+<section class="container" id="blackcobra" style="margin-bottom: 4em;">
+  <h3>🚀 Black Cobras Space</h3>
+  <button onclick="openVideo()" aria-label="Black Cobras Space Video öffnen">
+    ▶️ Black Cobras Space öffnen
+  </button>
+</section>
+
+<!-- Fullscreen Video Overlay -->
+<div id="videoOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <button id="closeVideoBtn" aria-label="Video schließen" onclick="closeVideo()">&times;</button>
+  <!-- TikTok Embed -->
+  <blockquote class="tiktok-embed" 
+    cite="https://www.tiktok.com/@qwiingel/video/7523520930375585054" 
+    data-video-id="7523520930375585054" 
+    style="max-width: 100%; min-width: 300px; margin: auto;">
+    <section>Loading video...</section>
+  </blockquote>
+</div>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
+<script>
+  const videoOverlay = document.getElementById('videoOverlay');
+  const body = document.body;
+
+  function openVideo() {
+    videoOverlay.style.display = 'flex';
+    videoOverlay.setAttribute('aria-hidden', 'false');
+    body.style.overflow = 'hidden'; // Scroll verhindern, während Video offen
+  }
+
+  function closeVideo() {
+    videoOverlay.style.display = 'none';
+    videoOverlay.setAttribute('aria-hidden', 'true');
+    body.style.overflow = 'auto';
+  }
+
+  // ESC Taste schließt das Video
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && videoOverlay.style.display === 'flex') {
+      closeVideo();
+    }
+  });
+</script>
+
+</body>
+</html>
