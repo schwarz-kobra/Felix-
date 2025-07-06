@@ -1,100 +1,20 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title>Black Cobra's Space</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
+<section class="container" id="blackcobra">
+  <h3>🚀 Black Cobras Space</h3>
+  <button onclick="toggleVideo()" style="padding: 1em; background: #0e76a8; color: white; border: none; border-radius: 10px; font-size: 1em; cursor: pointer;">
+    ▶️ Black Cobras Space öffnen
+  </button>
 
-    .header {
-      padding: 1em 2em;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .header button {
-      background: black;
-      color: yellow;
-      border: 2px solid yellow;
-      padding: 10px 16px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-
-    /* Black Cobra Space Overlay */
-    #cobraSpace {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: black;
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    #cobraSpace .warning {
-      font-size: 100px;
-      color: yellow;
-      animation: blink 1s infinite;
-    }
-
-    #cobraVideo {
-      width: 90%;
-      max-width: 700px;
-      display: none;
-      margin-top: 1em;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="header">
-  <h1>Meine Testseite</h1>
-  <button onclick="enterBlackCobra()">🚀 Black Cobra's Space</button>
-</div>
-
-<!-- Optional Inhalt -->
-<main style="padding: 2em;">
-  <p>Hier entsteht etwas Großes…</p>
-</main>
-
-<!-- Cobra Space Overlay -->
-<div id="cobraSpace">
-  <div class="warning">⚠️</div>
-  <p style="color:yellow; font-family:monospace;">FLASH WARNING</p>
-  <video id="cobraVideo" src="warning.mp4" autoplay controls></video>
-</div>
+  <div id="videoContainer" style="margin-top: 1em; display: none;">
+    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@qwiingel/video/7523520930375585054" data-video-id="7523520930375585054" style="max-width: 100%;min-width: 300px;" >
+      <section>Loading video...</section>
+    </blockquote>
+    <script async src="https://www.tiktok.com/embed.js"></script>
+  </div>
+</section>
 
 <script>
-function enterBlackCobra() {
-  const overlay = document.getElementById("cobraSpace");
-  const video = document.getElementById("cobraVideo");
-  overlay.style.display = "flex";
-
-  setTimeout(() => {
-    document.querySelector(".warning").style.display = "none";
-    video.style.display = "block";
-    video.play();
-  }, 3000);
-}
+  function toggleVideo() {
+    const video = document.getElementById('videoContainer');
+    video.style.display = video.style.display === 'none' ? 'block' : 'none';
+  }
 </script>
-
-</body>
-</html>
