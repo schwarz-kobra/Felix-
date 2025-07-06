@@ -1,20 +1,313 @@
-<section class="container" id="blackcobra">
-  <h3>🚀 Black Cobras Space</h3>
-  <button onclick="toggleVideo()" style="padding: 1em; background: #0e76a8; color: white; border: none; border-radius: 10px; font-size: 1em; cursor: pointer;">
-    ▶️ Black Cobras Space öffnen
-  </button>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Arduino Parkplatz mit Lasersensoren – Schulprojekt Mittelschule Graz Straßgang">
+  <title>🔒 Arduino Parkplatz mit Lasern</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
 
-  <div id="videoContainer" style="margin-top: 1em; display: none;">
-    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@qwiingel/video/7523520930375585054" data-video-id="7523520930375585054" style="max-width: 100%;min-width: 300px;" >
-      <section>Loading video...</section>
-    </blockquote>
-    <script async src="https://www.tiktok.com/embed.js"></script>
+    header {
+      background: #222;
+      color: white;
+      padding: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    nav {
+      display: flex;
+      overflow-x: auto;
+      gap: 1em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 0.5em;
+      flex-shrink: 0;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 3em 2em;
+      background: #0e76a8;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 2em;
+    }
+
+    .warnbox {
+      background: #fff3cd;
+      border-left: 8px solid #ffa502;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
+
+    .warnbox h4 {
+      margin-top: 0;
+      color: #b55d00;
+    }
+
+    .kontakt a {
+      color: #0e76a8;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 2em;
+      font-size: 0.9em;
+      line-height: 1.4em;
+    }
+
+    footer hr {
+      border-color: #444;
+      margin: 1.5em 0;
+    }
+
+    /* Neuer Stil für Readme Sektion (optional) */
+    #readme h2, #readme h3 {
+      color: #0e76a8;
+    }
+
+    /* Button Styling */
+    #blackcobra button {
+      padding: 1em;
+      background: #0e76a8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    /* Fullscreen Overlay für Video */
+    #videoOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #videoOverlay iframe, 
+    #videoOverlay blockquote {
+      width: 90vw;
+      height: 90vh;
+      max-width: 900px;
+      max-height: 600px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 20px black;
+      background: black;
+    }
+
+    #closeVideoBtn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 2em;
+      color: white;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10000;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-top: 0.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🔒 Arduino Parkplatz</h1>
+  <nav>
+    <a href="#start">Start</a>
+    <a href="#anleitung">Anleitung</a>
+    <a href="#bauteile">Bauteile</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<!-- Readme Sektion -->
+<section class="container" id="readme">
+  <h2>🔒 Arduino Parkplatz mit Lasersicherung</h2>
+  <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die Mittelschule Graz Strassgang.</p>
+  
+  <p><strong>🔗 Live ansehen:</strong> Hier geht’s zur Website</p>
+  
+  <h3>🚀 Funktionen</h3>
+  <ul>
+    <li>Automatische Schrankenöffnung per Lasersensor</li>
+    <li>Bewegungserkennung mit IR-Sensor</li>
+    <li>Warnanzeige auf LCD-Display</li>
+    <li>Piezo-Warnton bei Zutritt</li>
+    <li>Visuelle Anleitung & Upload-Bereich für STL-Dateien und Modelle</li>
+    <li>Suche & Sortierung nach 3D-Modellen, Druckern, Roblox-Skripten u. v. m.</li>
+    <li>DSGVO-konformer Cookie- und Sicherheitshinweis</li>
+    <li>Impressum & Kontakt</li>
+  </ul>
+  
+  <h3>📦 Inhalte der Website</h3>
+  <ul>
+    <li>Projektbeschreibung</li>
+    <li>Schaltplan & Komponentenliste</li>
+    <li>Sicherheits- und Warnhinweise (in Orange hervorgehoben)</li>
+    <li>Downloadbereich & Upload-Button</li>
+    <li>Suche nach Modellen/Skripten</li>
+    <li>Impressum, Kontakt & Datenschutzhinweis</li>
+    <li>404-Seite bei Fehlern</li>
+    <li>Changelog / Änderungen am Projekt</li>
+  </ul>
+  
+  <h3>🏫 Über uns</h3>
+  <p>Erstellt im Rahmen eines Schulprojekts an der Mittelschule Graz Strassgang.<br>
+  Made with ❤️ by Felix & Thomas.</p>
+  
+  <h3>📬 Kontakt</h3>
+  <ul>
+    <li>📧 E-Mail: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></li>
+    <li>🎥 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></li>
+    <li>📦 GitHub Repository: <a href="https://github.com/dein-nutzername/arduino-parklaser" target="_blank">github.com/dein-nutzername/arduino-parklaser</a></li>
+  </ul>
+  
+  <h3>🔒 Copyright</h3>
+  <p>© 2025 by Felix & Thomas<br>
+  Projekt für die Mittelschule Graz Strassgang<br>
+  Alle Rechte vorbehalten.</p>
+</section>
+
+<section class="hero" id="start">
+  <h2>Arduino Parkplatz mit Lasersensoren</h2>
+  <p>Automatisierter Zugang mit Servo, IR-Sensor und LCD – Schulprojekt 2025</p>
+</section>
+
+<section class="container" id="anleitung">
+  <div class="section">
+    <h3>📖 Projektbeschreibung</h3>
+    <p>Eine automatische Schrankenanlage mit Lasersensor. Erkennt ein Fahrzeug und öffnet per Servoarm für 5 Sekunden. LCD zeigt Status, Bewegungssensor optional.</p>
+    <p><strong>🔄 Update kommt demnächst...</strong></p>
+  </div>
+
+  <div class="section warnhinweise">
+    <h3>⚠️ Warn- und Sicherheitshinweise</h3>
+
+    <div class="warnbox">
+      <h4>🔌 Elektrische Sicherheit</h4>
+      <ul>
+        <li>Stromversorgung nur über 5 V vom Arduino oder geregeltem Netzteil anschließen.</li>
+        <li>Richtige Polung (GND und VCC) beachten.</li>
+        <li>Nie bei laufendem Betrieb Kabel umstecken.</li>
+      </ul>
+    </div>
+
+    <div class="warnbox">
+      <h4>🔋 Stromquelle</h4>
+      <ul>
+        <li>Verwende eine separate 5 V-Stromquelle mit mind. 1 A.</li>
+      </ul>
+    </div>
+
+    <div class="warnbox">
+      <h4>🔥 Laser- und Brandschutz</h4>
+      <ul>
+        <li>Laser nie auf Augenhöhe richten.</li>
+        <li>Nur Klasse-1 oder Klasse-2 Laser verwenden.</li>
+        <li>Keine Bauteile abdecken oder überhitzen lassen.</li>
+      </ul>
+    </div>
+
+    <div class="warnbox">
+      <h4>🧠 Allgemein</h4>
+      <ul>
+        <li>Leitungen stabil und kurz halten.</li>
+        <li>Keine wackelnden Verbindungen verwenden.</li>
+        <li>Servo muss sich frei bewegen können.</li>
+      </ul>
+    </div>
+
+    <div class="warnbox">
+      <h4>🛑 Notabschaltung</h4>
+      <ul>
+        <li>Ein Schalter zur Notabschaltung ist empfohlen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="bauteile">
+    <h3>📦 Komponentenliste</h3>
+    <ul>
+      <li>Arduino Uno</li>
+      <li>LCD 16x2 mit I2C</li>
+      <li>2x Laser-Sensor</li>
+      <li>IR Sensor</li>
+      <li>Servo SG90</li>
+      <li>Piezo-Buzzer</li>
+      <li>Stromversorgung 5V 1A</li>
+    </ul>
   </div>
 </section>
 
-<script>
-  function toggleVideo() {
-    const video = document.getElementById('videoContainer');
-    video.style.display = video.style.display === 'none' ? 'block' : 'none';
-  }
-</script>
+<section class="container kontakt" id="kontakt">
+  <h3>📬 Kontakt</h3>
+  <p>Email: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></p>
+  <p>🔗 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></p>
+  <p>🏫 Projekt: Mittelschule Graz Straßgang – <a href="https://www.holzmsgraz.at" target="_blank">Website besuchen</a></p>
+</section>
+
+<footer>
+  <hr />
+  <p><strong>📄 Impressum & Datenschutz</strong></p>
+  <p>Diese Website ist ein Schulprojekt und enthält keine kommerziellen Inhalte. Alle Inhalte wurden von Felix & Thomas erstellt.</p>
+  <p>Verantwortlich laut § 5 TMG: Felix E. (Kontakt über obenstehende E-Mail-Adresse)</p>
+  <p>Alle verwendeten Logos, Icons und Markennamen gehören den jeweiligen Eigentümern.</p>
+  <p>Diese Website speichert keine personenbezogenen Daten und verwendet keine Cookies.</p>
+  <p>Letzte Änderung: Juni 2025 | Version: 
