@@ -27,23 +27,31 @@
     /* Support Bereich */
     #support {
       background: #fff; padding: 1.5em; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px; margin: 0 auto 3em auto;
+      max-width: 600px; margin: 0 auto 6em auto;
     }
     #support h2 {
       text-align: center; margin-bottom: 1em; color: #0e76a8;
     }
+    #support label {
+      display: block; margin-top: 1em; font-weight: bold; color: #333;
+    }
+    #support input, #support textarea {
+      width: 100%; padding: 0.5em; margin-top: 0.3em; font-size: 1em; border-radius: 6px; border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
     #support textarea {
-      width: 100%; height: 80px; resize: none; padding: 0.5em; font-size: 1em; border-radius: 6px; border: 1px solid #ccc;
+      height: 80px; resize: none;
     }
     #support button {
-      margin-top: 0.7em; width: 100%; padding: 0.7em; background: #0e76a8; color: white; border: none; border-radius: 8px; cursor: pointer;
+      margin-top: 1.5em; width: 100%; padding: 0.7em; background: #0e76a8; color: white; border: none; border-radius: 8px; cursor: pointer;
       font-size: 1em; transition: background 0.3s ease;
     }
     #support button:hover {
       background: #094a65;
     }
-    /* Chat-Kästchen im Discord-Webhook */
-    /* Das machen wir serverseitig, hier nur als Kommentar */
+    #statusMsg {
+      text-align: center; margin-top: 10px; font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -81,9 +89,20 @@
   <!-- Support Formular -->
   <section id="support">
     <h2>Support Nachricht senden</h2>
-    <textarea id="supportMsg" placeholder="Schreib hier deine Frage oder Nachricht..."></textarea>
+    <label for="name">Name *</label>
+    <input type="text" id="name" placeholder="Dein Name" required />
+    
+    <label for="email">E-Mail *</label>
+    <input type="email" id="email" placeholder="Deine E-Mail" required />
+    
+    <label for="discord">Discord-Name *</label>
+    <input type="text" id="discord" placeholder="Dein Discord-Name" required />
+    
+    <label for="message">Nachricht *</label>
+    <textarea id="message" placeholder="Schreib hier deine Frage oder Nachricht..." required></textarea>
+    
     <button onclick="sendSupport()">Nachricht senden</button>
-    <p id="statusMsg" style="text-align:center; margin-top: 10px;"></p>
+    <p id="statusMsg"></p>
   </section>
 </div>
 
@@ -93,29 +112,36 @@
 
 <script>
   async function sendSupport() {
-    const msg = document.getElementById('supportMsg').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const discord = document.getElementById('discord').value.trim();
+    const message = document.getElementById('message').value.trim();
     const statusEl = document.getElementById('statusMsg');
-    if (!msg) {
-      statusEl.style.color = 'red';
-      statusEl.textContent = 'Bitte eine Nachricht eingeben!';
-      return;
-    }
+    statusEl.style.color = 'red';
+
+    if (!name) { statusEl.textContent = 'Bitte Name eingeben!'; return; }
+    if (!email || !validateEmail(email)) { statusEl.textContent = 'Bitte eine gültige E-Mail eingeben!'; return; }
+    if (!discord) { statusEl.textContent = 'Bitte Discord-Namen eingeben!'; return; }
+    if (!message) { statusEl.textContent = 'Bitte Nachricht eingeben!'; return; }
+
     statusEl.style.color = 'black';
     statusEl.textContent = 'Sende Nachricht...';
 
-    // Discord Webhook URL
     const webhookURL = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
 
-    // Erstelle das Discord Embed-Format (für "eingekastelte" Nachricht)
+    // Embed für schöne eingerahmte Nachricht
     const data = {
       username: "Support-Bot",
       embeds: [{
         title: "Neue Support-Nachricht",
-        description: msg,
-        color: 3447003, // Blau
-        footer: {
-          text: "Arduino Parkplatz Support"
-        },
+        color: 3447003,
+        fields: [
+          { name: "Name", value: name, inline: true },
+          { name: "E-Mail", value: email, inline: true },
+          { name: "Discord-Name", value: discord, inline: true },
+          { name: "Nachricht", value: message }
+        ],
+        footer: { text: "Arduino Parkplatz Support" },
         timestamp: new Date().toISOString()
       }]
     };
@@ -129,7 +155,10 @@
       if (response.ok) {
         statusEl.style.color = 'green';
         statusEl.textContent = 'Nachricht erfolgreich gesendet! Danke 😊';
-        document.getElementById('supportMsg').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('discord').value = '';
+        document.getElementById('message').value = '';
       } else {
         throw new Error('Fehler beim Senden');
       }
@@ -139,7 +168,6 @@
       console.error(err);
     }
   }
-</script>
 
-</body>
-</html>
+  function validateEmail(email) {
+    // Einfacher Email-Check
