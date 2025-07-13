@@ -2,24 +2,62 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Support – Arduino Projekt</title>
+  <title>Arduino Parkplatz Projekt</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 2rem;
-      background: #f9f9f9;
+      margin: 0;
+      background: #f0f2f5;
+      color: #333;
     }
-
-    .form-container {
-      max-width: 500px;
-      margin: auto;
+    header {
+      background: #1e1e2f;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      width: 200px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      overflow: hidden;
+    }
+    .card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .card p {
+      padding: 1rem;
+      font-weight: bold;
+    }
+    .section {
+      max-width: 800px;
+      margin: 2rem auto;
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-
-    input, textarea, button {
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem;
+      color: #666;
+    }
+    .form-group input, .form-group textarea {
       width: 100%;
       padding: 0.75rem;
       margin-bottom: 1rem;
@@ -27,19 +65,14 @@
       border-radius: 8px;
       font-size: 1rem;
     }
-
     button {
-      background-color: #007bff;
+      padding: 0.75rem 2rem;
+      background: #007bff;
       color: white;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
     }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
     .status {
       margin-top: 1rem;
       font-weight: bold;
@@ -47,15 +80,53 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>📬 Support-Anfrage</h2>
-    <input type="text" id="name" placeholder="Dein Name" required />
-    <input type="email" id="email" placeholder="Deine E-Mail" required />
-    <input type="text" id="discord" placeholder="Dein Discord-Name" required />
-    <textarea id="message" placeholder="Deine Nachricht" rows="5" required></textarea>
-    <button onclick="sendSupport()">Absenden</button>
-    <div id="statusMsg" class="status"></div>
-  </div>
+  <header>
+    <h1>🔒 Arduino Parkplatz mit Lasersicherung</h1>
+    <p>Ein Schulprojekt der Mittelschule Graz Strassgang</p>
+  </header>
+
+  <main>
+    <div class="cards">
+      <div class="card">
+        <img src="/images/arduino.jpg" alt="Arduino">
+        <p>Arduino</p>
+      </div>
+      <div class="card">
+        <img src="/images/3d-modelle.jpg" alt="3D Modelle">
+        <p>3D Modelle</p>
+      </div>
+      <div class="card">
+        <img src="/images/roblox.jpg" alt="Roblox Skripte">
+        <p>Roblox</p>
+      </div>
+      <div class="card">
+        <img src="/images/tutorials.jpg" alt="Tutorials">
+        <p>Tutorials</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📬 Support-Anfrage</h2>
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Dein Name" required />
+        <input type="email" id="email" placeholder="Deine E-Mail" required />
+        <input type="text" id="discord" placeholder="Dein Discord-Name" required />
+        <textarea id="message" placeholder="Deine Nachricht" rows="5" required></textarea>
+        <button onclick="sendSupport()">Absenden</button>
+        <div id="statusMsg" class="status"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>ℹ️ Update</h3>
+      <p>Update coming soon...</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Felix & Thomas – Mittelschule Graz Strassgang</p>
+    <p><a href="mailto:felixepic91@gmail.com">Kontakt</a> | <a href="#">Impressum</a> | DSGVO-konform</p>
+  </footer>
 
   <script>
     async function sendSupport() {
@@ -97,7 +168,7 @@
                 type: 2,
                 style: 5,
                 label: "Im Discord antworten",
-                url: "https://discord.com/channels/1331653812431093841", // dein Server- oder Channel-Link
+                url: "https://discord.com/channels/1331653812431093841"
               }
             ]
           }
