@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Startseite - Arduino Projekt</title>
+<title>Arduino Projekt Startseite</title>
 <style>
+  /* Reset & basics */
+  * {
+    box-sizing: border-box;
+  }
   body {
+    margin: 0; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background: #f9f9f9;
-    color: #333;
+    background: #f4f6f8;
+    color: #222;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -18,189 +22,147 @@
     background: #0e76a8;
     color: white;
     padding: 1rem;
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.7rem;
     text-align: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
   main {
-    flex-grow: 1;
-    padding: 2rem 1rem;
+    flex: 1;
     max-width: 960px;
-    margin: auto;
+    margin: 2rem auto 3rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-  .intro {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .intro h1 {
-    margin: 0 0 0.5rem 0;
-    font-weight: 700;
-  }
-  .intro p {
-    color: #555;
-    font-size: 1.15rem;
-  }
-  .button-grid {
+  .buttons {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
   }
   .btn {
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     width: 140px;
     padding: 1rem 0.5rem 1.2rem 0.5rem;
     cursor: pointer;
+    user-select: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
-    user-select: none;
   }
-  .btn:hover, .btn.active {
-    box-shadow: 0 6px 18px rgba(14, 118, 168, 0.4);
+  .btn:hover {
+    box-shadow: 0 7px 22px rgba(14,118,168,0.35);
     transform: translateY(-4px);
   }
   .btn img {
     width: 60px;
     height: 60px;
+    margin-bottom: 0.5rem;
     object-fit: contain;
-    margin-bottom: 0.6rem;
   }
   .btn span {
-    font-weight: 600;
     color: #0e76a8;
+    font-weight: 600;
     font-size: 1.1rem;
+    text-align: center;
   }
   #content {
     background: white;
-    border-radius: 14px;
-    padding: 2rem 2.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: #222;
-    max-width: 900px;
-    margin: 0 auto 3rem;
+    border-radius: 16px;
+    padding: 2rem;
     min-height: 280px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
     overflow-y: auto;
   }
-  #content h2 {
-    margin-top: 0;
-    color: #0e76a8;
-    font-weight: 700;
+  #content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 0;
   }
-  #content a {
-    color: #0e76a8;
-    text-decoration: none;
+  /* Discord Widget Container */
+  #discord-widget {
+    max-width: 350px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
   }
-  #content a:hover {
-    text-decoration: underline;
-  }
-  #content ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    padding-left: 1.2rem;
-  }
-  #content hr {
-    margin: 2rem 0;
-    border: none;
-    border-top: 1px solid #eee;
-  }
-  /* Scrollbar styling */
-  #content::-webkit-scrollbar {
-    width: 8px;
-  }
-  #content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
-  #content::-webkit-scrollbar-thumb {
-    background: #0e76a8;
-    border-radius: 10px;
+
+  /* Responsive */
+  @media (min-width: 900px) {
+    main {
+      flex-direction: row;
+      gap: 2rem;
+    }
+    #content {
+      flex: 1;
+    }
+    #discord-widget {
+      flex-shrink: 0;
+      margin: 0;
+    }
   }
 </style>
 </head>
 <body>
-<header>🔒 Arduino Parkplatz Projekt</header>
+<header>Arduino Projekt Startseite</header>
 <main>
-  <div class="intro">
-    <h1>Willkommen zu unserem Projekt!</h1>
-    <p>Hier findest du alles rund um ESP32, WLAN Jammer, Tutorials, Arduino und mehr.</p>
-  </div>
-
-  <div class="button-grid">
-    <div class="btn active" data-key="esp32" onclick="switchContent(event)">
-      <img src="https://img.icons8.com/ios-filled/100/0e76a8/microchip.png" alt="ESP32 Icon" />
-      <span>ESP32</span>
+  <section>
+    <div class="buttons">
+      <div class="btn" data-key="esp32" onclick="switchContent(event)">
+        <img src="https://img.icons8.com/ios-filled/100/0e76a8/microchip.png" alt="ESP32" />
+        <span>ESP32</span>
+      </div>
+      <div class="btn" data-key="wlanjammer" onclick="switchContent(event)">
+        <img src="https://img.icons8.com/ios-filled/100/0e76a8/wifi.png" alt="WLAN Jammer" />
+        <span>WLAN Jammer</span>
+      </div>
+      <div class="btn" data-key="tutorials" onclick="switchContent(event)">
+        <img src="https://img.icons8.com/ios-filled/100/0e76a8/book.png" alt="Tutorials" />
+        <span>Tutorials</span>
+      </div>
+      <div class="btn" data-key="kontakt" onclick="switchContent(event)">
+        <img src="https://img.icons8.com/ios-filled/100/0e76a8/email.png" alt="Kontakt" />
+        <span>Kontakt</span>
+      </div>
+      <div class="btn" data-key="arduino" onclick="switchContent(event)">
+        <img src="https://img.icons8.com/ios-filled/100/0e76a8/arduino.png" alt="Arduino" />
+        <span>Arduino</span>
+      </div>
     </div>
-    <div class="btn" data-key="wlanjammer" onclick="switchContent(event)">
-      <img src="https://img.icons8.com/ios-filled/100/0e76a8/wifi.png" alt="WLAN Jammer Icon" />
-      <span>WLAN Jammer</span>
+    <div id="content">
+      <p>Wähle einen Button, um Inhalte anzuzeigen.</p>
     </div>
-    <div class="btn" data-key="tutorials" onclick="switchContent(event)">
-      <img src="https://img.icons8.com/ios-filled/100/0e76a8/book.png" alt="Tutorials Icon" />
-      <span>Tutorials</span>
-    </div>
-    <div class="btn" data-key="kontakt" onclick="switchContent(event)">
-      <img src="https://img.icons8.com/ios-filled/100/0e76a8/email.png" alt="Kontakt Icon" />
-      <span>Kontakt</span>
-    </div>
-    <div class="btn" data-key="arduino" onclick="switchContent(event)">
-      <img src="https://img.icons8.com/ios-filled/100/0e76a8/arduino.png" alt="Arduino Icon" />
-      <span>Arduino</span>
-    </div>
-  </div>
-
-  <section id="content">
-    <!-- Start mit ESP32-Inhalt -->
-    <h2>ESP32</h2>
-    <p>Hier findest du bald spannende Infos und Tutorials zum ESP32!</p>
   </section>
+
+  <aside id="discord-widget">
+    <iframe src="https://discord.com/widget?id=1331653812431093841&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </aside>
 </main>
 
 <script>
   const contentData = {
-    esp32: `
-      <h2>ESP32</h2>
-      <p>Der ESP32 ist ein leistungsstarker Mikrocontroller mit integriertem WLAN und Bluetooth. Perfekt für viele IoT-Projekte und mehr.</p>
-      <ul>
-        <li>Dual-Core-Prozessor</li>
-        <li>Integriertes WiFi & Bluetooth</li>
-        <li>Viele GPIO-Pins</li>
-        <li>Unterstützt Arduino-IDE, MicroPython & mehr</li>
-      </ul>
-    `,
-    wlanjammer: `
-      <h2>WLAN Jammer</h2>
-      <p>WLAN Jammer können genutzt werden, um gezielt WLAN-Signale zu stören (je nach gesetzlicher Lage). Hier erfährst du, wie WLAN-Signale funktionieren und was beim Jammen zu beachten ist.</p>
-    `,
-    tutorials: `
-      <h2>Tutorials</h2>
-      <p>Unsere Schritt-für-Schritt-Anleitungen für Arduino, ESP32 und mehr.</p>
-      <ul>
-        <li>Arduino starten</li>
-        <li>ESP32 einrichten</li>
-        <li>Sensoren anschließen</li>
-        <li>WLAN-Projekte</li>
-      </ul>
-    `,
+    esp32: `<h2>ESP32</h2><p>Infos folgen bald!</p>`,
+    wlanjammer: `<h2>WLAN Jammer</h2><p>Infos folgen bald!</p>`,
+    tutorials: `<h2>Tutorials</h2><p>Die Tutorials werden nach und nach hier veröffentlicht.</p>`,
     kontakt: `
       <h2>Kontakt</h2>
-      <p>Du möchtest mit uns in Verbindung treten? Hier findest du unsere Kontaktdaten:</p>
+      <p>Hier findest du unsere Kontaktdaten:</p>
       <ul>
         <li>E-Mail: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></li>
         <li>TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></li>
-        <li>Projektseite: <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Straßgang</a></li>
+        <li>Projektseite: <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Strassgang</a></li>
       </ul>
     `,
     arduino: `
       <h2>🔒 Arduino Parkplatz mit Lasersicherung</h2>
       <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die <strong>Mittelschule Graz Strassgang</strong>.</p>
       <p><strong>🔗 Live ansehen:</strong> <a href="https://dein-vercel-link.vercel.app" target="_blank">Hier geht’s zur Website</a></p>
-
       <h3>🚀 Funktionen</h3>
       <ul>
         <li>Automatische Schrankenöffnung per Lasersensor</li>
@@ -212,7 +174,6 @@
         <li>DSGVO-konformer Cookie- und Sicherheitshinweis</li>
         <li>Impressum & Kontakt</li>
       </ul>
-
       <h3>📦 Inhalte der Website</h3>
       <ul>
         <li><strong>Projektbeschreibung</strong></li>
@@ -224,33 +185,29 @@
         <li><strong>404-Seite bei Fehlern</strong></li>
         <li><strong>Changelog / Änderungen am Projekt</strong></li>
       </ul>
-
       <h3>🏫 Über uns</h3>
       <p>Erstellt im Rahmen eines Schulprojekts an der <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Strassgang</a>.<br>
-      Made with ❤️ by <strong>Felix & Thomas</strong>.</p>
-
+      Made with ❤️ von <strong>Felix & Thomas</strong>.</p>
       <h3>📬 Kontakt</h3>
       <ul>
         <li>📧 E-Mail: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></li>
         <li>🎥 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></li>
         <li>📦 GitHub Repository: <a href="https://github.com/dein-nutzername/arduino-parklaser" target="_blank">github.com/dein-nutzername/arduino-parklaser</a></li>
       </ul>
-
       <hr>
-
       <p><small>© 2025 by Felix & Thomas<br>Projekt für die Mittelschule Graz Strassgang<br>Alle Rechte vorbehalten.</small></p>
     `
   };
 
-  function switchContent(event) {
-    const btns = document.querySelectorAll('.btn');
-    btns.forEach(b => b.classList.remove('active'));
-    const btn = event.currentTarget;
+  function switchContent(e) {
+    // Buttons: remove active from all, add to clicked
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+    const btn = e.currentTarget;
     btn.classList.add('active');
 
+    // Load content
     const key = btn.getAttribute('data-key');
-    const content = contentData[key] || "<p>Inhalt nicht verfügbar.</p>";
-    document.getElementById('content').innerHTML = content;
+    document.getElementById('content').innerHTML = contentData[key] || '<p>Inhalt nicht verfügbar.</p>';
   }
 </script>
 </body>
