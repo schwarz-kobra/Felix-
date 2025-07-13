@@ -1,82 +1,145 @@
-<!-- Support Formular -->
-<section id="support">
-  <form id="supportForm">
-    <h2>Support kontaktieren</h2>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required placeholder="Dein Name" />
-    <label for="email">E-Mail</label>
-    <input type="email" id="email" name="email" required placeholder="Deine E-Mail" />
-    <label for="message">Nachricht</label>
-    <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht"></textarea>
-    <button type="submit">Absenden</button>
-  </form>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔒 Arduino Parkplatz</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; color: #333; }
+    header { background: #222; color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;}
+    header h1 { margin: 0; font-size: 1.4em; }
+    nav { display: flex; gap: 1em; overflow-x: auto; }
+    nav a { color: white; text-decoration: none; padding: 0.5em; white-space: nowrap; }
+    nav a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 2em auto; background: white; padding: 2em; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .buttons { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2em; margin-bottom: 3em; }
+    .btn {
+      width: 150px; text-align: center; cursor: pointer; background: #0e76a8; color: white; border-radius: 10px; padding: 1em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s ease;
+      user-select: none;
+    }
+    .btn:hover { background: #094a65; }
+    .btn img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 0.5em; }
+    footer {
+      background: #222; color: white; text-align: center; padding: 1em 0; font-size: 0.9em;
+      position: fixed; bottom: 0; width: 100%;
+    }
+    /* Support Bereich */
+    #support {
+      background: #fff; padding: 1.5em; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px; margin: 0 auto 3em auto;
+    }
+    #support h2 {
+      text-align: center; margin-bottom: 1em; color: #0e76a8;
+    }
+    #support textarea {
+      width: 100%; height: 80px; resize: none; padding: 0.5em; font-size: 1em; border-radius: 6px; border: 1px solid #ccc;
+    }
+    #support button {
+      margin-top: 0.7em; width: 100%; padding: 0.7em; background: #0e76a8; color: white; border: none; border-radius: 8px; cursor: pointer;
+      font-size: 1em; transition: background 0.3s ease;
+    }
+    #support button:hover {
+      background: #094a65;
+    }
+    /* Chat-Kästchen im Discord-Webhook */
+    /* Das machen wir serverseitig, hier nur als Kommentar */
+  </style>
+</head>
+<body>
 
-  <div id="msg" class="chat-box"></div>
-</section>
+<header>
+  <h1>🔒 Arduino Parkplatz</h1>
+  <nav>
+    <a href="#start">Start</a>
+    <a href="#anleitung">Anleitung</a>
+    <a href="#bauteile">Bauteile</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
 
-<style>
-  /* Chat-Kästchen Style */
-  .chat-box {
-    max-width: 600px;
-    margin: 1rem auto 3rem;
-    padding: 1rem 1.2rem;
-    border-radius: 16px;
-    font-weight: 600;
-    font-size: 1rem;
-    max-width: 100%;
-    word-wrap: break-word;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .chat-box.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1.5px solid #c3e6cb;
-  }
-  .chat-box.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1.5px solid #f5c6cb;
-  }
-</style>
+<div class="container">
+  <div class="buttons">
+    <div class="btn" onclick="alert('Noch nicht implementiert')">
+      <img src="https://img.icons8.com/color/96/000000/esp32.png" alt="ESP32" />
+      <div>ESP32</div>
+    </div>
+    <div class="btn" onclick="alert('Noch nicht implementiert')">
+      <img src="https://img.icons8.com/color/96/000000/wifi.png" alt="WiFi Jammer" />
+      <div>WiFi Jammer</div>
+    </div>
+    <div class="btn" onclick="alert('Noch nicht implementiert')">
+      <img src="https://img.icons8.com/color/96/000000/tutorial.png" alt="Tutorials" />
+      <div>Tutorials</div>
+    </div>
+    <div class="btn" onclick="alert('Noch nicht implementiert')">
+      <img src="https://img.icons8.com/color/96/000000/arduino.png" alt="Arduino" />
+      <div>Arduino</div>
+    </div>
+  </div>
+
+  <!-- Support Formular -->
+  <section id="support">
+    <h2>Support Nachricht senden</h2>
+    <textarea id="supportMsg" placeholder="Schreib hier deine Frage oder Nachricht..."></textarea>
+    <button onclick="sendSupport()">Nachricht senden</button>
+    <p id="statusMsg" style="text-align:center; margin-top: 10px;"></p>
+  </section>
+</div>
+
+<footer>
+  © 2025 Felix & Thomas — Schulprojekt Mittelschule Graz Straßgang — <a href="mailto:felixepic91@gmail.com" style="color:#0e76a8;">Kontakt</a>
+</footer>
 
 <script>
-  const form = document.getElementById('supportForm');
-  const msgDiv = document.getElementById('msg');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-
-    if (!name || !email || !message) {
-      msgDiv.textContent = 'Bitte alle Felder ausfüllen.';
-      msgDiv.className = 'chat-box error';
+  async function sendSupport() {
+    const msg = document.getElementById('supportMsg').value.trim();
+    const statusEl = document.getElementById('statusMsg');
+    if (!msg) {
+      statusEl.style.color = 'red';
+      statusEl.textContent = 'Bitte eine Nachricht eingeben!';
       return;
     }
+    statusEl.style.color = 'black';
+    statusEl.textContent = 'Sende Nachricht...';
 
-    const webhookURL = 'https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv';
+    // Discord Webhook URL
+    const webhookURL = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
 
-    const payload = {
-      content: `**Support-Anfrage:**\nName: ${name}\nEmail: ${email}\nNachricht:\n${message}`
+    // Erstelle das Discord Embed-Format (für "eingekastelte" Nachricht)
+    const data = {
+      username: "Support-Bot",
+      embeds: [{
+        title: "Neue Support-Nachricht",
+        description: msg,
+        color: 3447003, // Blau
+        footer: {
+          text: "Arduino Parkplatz Support"
+        },
+        timestamp: new Date().toISOString()
+      }]
     };
 
-    fetch(webhookURL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload),
-    }).then(res => {
-      if (res.ok) {
-        msgDiv.textContent = '✅ Nachricht erfolgreich gesendet!';
-        msgDiv.className = 'chat-box success';
-        form.reset();
+    try {
+      const response = await fetch(webhookURL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (response.ok) {
+        statusEl.style.color = 'green';
+        statusEl.textContent = 'Nachricht erfolgreich gesendet! Danke 😊';
+        document.getElementById('supportMsg').value = '';
       } else {
-        throw new Error('Fehler beim Senden.');
+        throw new Error('Fehler beim Senden');
       }
-    }).catch(() => {
-      msgDiv.textContent = '❌ Fehler beim Senden. Bitte später erneut versuchen.';
-      msgDiv.className = 'chat-box error';
-    });
-  });
+    } catch (err) {
+      statusEl.style.color = 'red';
+      statusEl.textContent = 'Fehler beim Senden der Nachricht.';
+      console.error(err);
+    }
+  }
 </script>
+
+</body>
+</html>
