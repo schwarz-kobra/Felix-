@@ -2,172 +2,127 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🔒 Arduino Parkplatz</title>
+  <title>Support – Arduino Projekt</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; color: #333; }
-    header { background: #222; color: white; padding: 1em; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;}
-    header h1 { margin: 0; font-size: 1.4em; }
-    nav { display: flex; gap: 1em; overflow-x: auto; }
-    nav a { color: white; text-decoration: none; padding: 0.5em; white-space: nowrap; }
-    nav a:hover { text-decoration: underline; }
-    .container { max-width: 900px; margin: 2em auto; background: white; padding: 2em; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .buttons { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2em; margin-bottom: 3em; }
-    .btn {
-      width: 150px; text-align: center; cursor: pointer; background: #0e76a8; color: white; border-radius: 10px; padding: 1em;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s ease;
-      user-select: none;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
     }
-    .btn:hover { background: #094a65; }
-    .btn img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 0.5em; }
-    footer {
-      background: #222; color: white; text-align: center; padding: 1em 0; font-size: 0.9em;
-      position: fixed; bottom: 0; width: 100%;
+
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    /* Support Bereich */
-    #support {
-      background: #fff; padding: 1.5em; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 600px; margin: 0 auto 6em auto;
+
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
     }
-    #support h2 {
-      text-align: center; margin-bottom: 1em; color: #0e76a8;
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
     }
-    #support label {
-      display: block; margin-top: 1em; font-weight: bold; color: #333;
+
+    button:hover {
+      background-color: #0056b3;
     }
-    #support input, #support textarea {
-      width: 100%; padding: 0.5em; margin-top: 0.3em; font-size: 1em; border-radius: 6px; border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-    #support textarea {
-      height: 80px; resize: none;
-    }
-    #support button {
-      margin-top: 1.5em; width: 100%; padding: 0.7em; background: #0e76a8; color: white; border: none; border-radius: 8px; cursor: pointer;
-      font-size: 1em; transition: background 0.3s ease;
-    }
-    #support button:hover {
-      background: #094a65;
-    }
-    #statusMsg {
-      text-align: center; margin-top: 10px; font-weight: bold;
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>🔒 Arduino Parkplatz</h1>
-  <nav>
-    <a href="#start">Start</a>
-    <a href="#anleitung">Anleitung</a>
-    <a href="#bauteile">Bauteile</a>
-    <a href="#kontakt">Kontakt</a>
-  </nav>
-</header>
-
-<div class="container">
-  <div class="buttons">
-    <div class="btn" onclick="alert('Noch nicht implementiert')">
-      <img src="https://img.icons8.com/color/96/000000/esp32.png" alt="ESP32" />
-      <div>ESP32</div>
-    </div>
-    <div class="btn" onclick="alert('Noch nicht implementiert')">
-      <img src="https://img.icons8.com/color/96/000000/wifi.png" alt="WiFi Jammer" />
-      <div>WiFi Jammer</div>
-    </div>
-    <div class="btn" onclick="alert('Noch nicht implementiert')">
-      <img src="https://img.icons8.com/color/96/000000/tutorial.png" alt="Tutorials" />
-      <div>Tutorials</div>
-    </div>
-    <div class="btn" onclick="alert('Noch nicht implementiert')">
-      <img src="https://img.icons8.com/color/96/000000/arduino.png" alt="Arduino" />
-      <div>Arduino</div>
-    </div>
+  <div class="form-container">
+    <h2>📬 Support-Anfrage</h2>
+    <input type="text" id="name" placeholder="Dein Name" required />
+    <input type="email" id="email" placeholder="Deine E-Mail" required />
+    <input type="text" id="discord" placeholder="Dein Discord-Name" required />
+    <textarea id="message" placeholder="Deine Nachricht" rows="5" required></textarea>
+    <button onclick="sendSupport()">Absenden</button>
+    <div id="statusMsg" class="status"></div>
   </div>
 
-  <!-- Support Formular -->
-  <section id="support">
-    <h2>Support Nachricht senden</h2>
-    <label for="name">Name *</label>
-    <input type="text" id="name" placeholder="Dein Name" required />
-    
-    <label for="email">E-Mail *</label>
-    <input type="email" id="email" placeholder="Deine E-Mail" required />
-    
-    <label for="discord">Discord-Name *</label>
-    <input type="text" id="discord" placeholder="Dein Discord-Name" required />
-    
-    <label for="message">Nachricht *</label>
-    <textarea id="message" placeholder="Schreib hier deine Frage oder Nachricht..." required></textarea>
-    
-    <button onclick="sendSupport()">Nachricht senden</button>
-    <p id="statusMsg"></p>
-  </section>
-</div>
+  <script>
+    async function sendSupport() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const discord = document.getElementById("discord").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const status = document.getElementById("statusMsg");
 
-<footer>
-  © 2025 Felix & Thomas — Schulprojekt Mittelschule Graz Straßgang — <a href="mailto:felixepic91@gmail.com" style="color:#0e76a8;">Kontakt</a>
-</footer>
-
-<script>
-  async function sendSupport() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const discord = document.getElementById('discord').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const statusEl = document.getElementById('statusMsg');
-    statusEl.style.color = 'red';
-
-    if (!name) { statusEl.textContent = 'Bitte Name eingeben!'; return; }
-    if (!email || !validateEmail(email)) { statusEl.textContent = 'Bitte eine gültige E-Mail eingeben!'; return; }
-    if (!discord) { statusEl.textContent = 'Bitte Discord-Namen eingeben!'; return; }
-    if (!message) { statusEl.textContent = 'Bitte Nachricht eingeben!'; return; }
-
-    statusEl.style.color = 'black';
-    statusEl.textContent = 'Sende Nachricht...';
-
-    const webhookURL = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
-
-    // Embed für schöne eingerahmte Nachricht
-    const data = {
-      username: "Support-Bot",
-      embeds: [{
-        title: "Neue Support-Nachricht",
-        color: 3447003,
-        fields: [
-          { name: "Name", value: name, inline: true },
-          { name: "E-Mail", value: email, inline: true },
-          { name: "Discord-Name", value: discord, inline: true },
-          { name: "Nachricht", value: message }
-        ],
-        footer: { text: "Arduino Parkplatz Support" },
-        timestamp: new Date().toISOString()
-      }]
-    };
-
-    try {
-      const response = await fetch(webhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (response.ok) {
-        statusEl.style.color = 'green';
-        statusEl.textContent = 'Nachricht erfolgreich gesendet! Danke 😊';
-        document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('discord').value = '';
-        document.getElementById('message').value = '';
-      } else {
-        throw new Error('Fehler beim Senden');
+      if (!name || !email || !discord || !message) {
+        status.style.color = "red";
+        status.textContent = "Bitte fülle alle Felder aus.";
+        return;
       }
-    } catch (err) {
-      statusEl.style.color = 'red';
-      statusEl.textContent = 'Fehler beim Senden der Nachricht.';
-      console.error(err);
-    }
-  }
 
-  function validateEmail(email) {
-    // Einfacher Email-Check
+      const webhook = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
+
+      const payload = {
+        username: "Support Bot",
+        embeds: [
+          {
+            title: "Neue Support-Nachricht",
+            color: 0x00AAFF,
+            fields: [
+              { name: "👤 Name", value: name, inline: true },
+              { name: "📧 E-Mail", value: email, inline: true },
+              { name: "💬 Discord", value: discord },
+              { name: "📝 Nachricht", value: message }
+            ],
+            timestamp: new Date(),
+            footer: { text: "Arduino Support System" }
+          }
+        ],
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "Im Discord antworten",
+                url: "https://discord.com/channels/1331653812431093841", // dein Server- oder Channel-Link
+              }
+            ]
+          }
+        ]
+      };
+
+      try {
+        const res = await fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          status.style.color = "green";
+          status.textContent = "Erfolgreich gesendet! Wir melden uns bald.";
+        } else {
+          throw new Error("Fehler beim Senden.");
+        }
+      } catch (err) {
+        console.error(err);
+        status.style.color = "red";
+        status.textContent = "Fehler beim Absenden. Bitte versuch es später erneut.";
+      }
+    }
+  </script>
+</body>
+</html>
