@@ -198,4 +198,60 @@
     `,
     arduino: `
       <h2>🔒 Arduino Parkplatz mit Lasersicherung</h2>
-      <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke,
+      <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die <strong>Mittelschule Graz Strassgang</strong>.</p>
+      <p><strong>🔗 Live ansehen:</strong> <a href="https://dein-vercel-link.vercel.app" target="_blank">Hier geht’s zur Website</a></p>
+
+      <h3>🚀 Funktionen</h3>
+      <ul>
+        <li>Automatische Schrankenöffnung per Lasersensor</li>
+        <li>Bewegungserkennung mit IR-Sensor</li>
+        <li>Warnanzeige auf LCD-Display</li>
+        <li>Piezo-Warnton bei Zutritt</li>
+        <li>Visuelle Anleitung & Upload-Bereich für STL-Dateien und Modelle</li>
+        <li>Suche & Sortierung nach 3D-Modellen, Druckern, Roblox-Skripten u.v.m.</li>
+        <li>DSGVO-konformer Cookie- und Sicherheitshinweis</li>
+        <li>Impressum & Kontakt</li>
+      </ul>
+
+      <h3>📦 Inhalte der Website</h3>
+      <ul>
+        <li><strong>Projektbeschreibung</strong></li>
+        <li><strong>Schaltplan & Komponentenliste</strong></li>
+        <li><strong>Sicherheits- und Warnhinweise</strong> (in Orange hervorgehoben)</li>
+        <li><strong>Downloadbereich & Upload-Button</strong></li>
+        <li><strong>Suche nach Modellen/Skripten</strong></li>
+        <li><strong>Impressum, Kontakt & Datenschutzhinweis</strong></li>
+        <li><strong>404-Seite bei Fehlern</strong></li>
+        <li><strong>Changelog / Änderungen am Projekt</strong></li>
+      </ul>
+
+      <h3>🏫 Über uns</h3>
+      <p>Erstellt im Rahmen eines Schulprojekts an der <a href="https://www.holzmsgraz.at/" target="_blank">Mittelschule Graz Strassgang</a>.<br>
+      Made with ❤️ by <strong>Felix & Thomas</strong>.</p>
+
+      <h3>📬 Kontakt</h3>
+      <ul>
+        <li>📧 E-Mail: <a href="mailto:felixepic91@gmail.com">felixepic91@gmail.com</a></li>
+        <li>🎥 TikTok: <a href="https://www.tiktok.com/@blackcobra.officialx" target="_blank">@blackcobra.officialx</a></li>
+        <li>📦 GitHub Repository: <a href="https://github.com/dein-nutzername/arduino-parklaser" target="_blank">github.com/dein-nutzername/arduino-parklaser</a></li>
+      </ul>
+
+      <hr>
+
+      <p><small>© 2025 by Felix & Thomas<br>Projekt für die Mittelschule Graz Strassgang<br>Alle Rechte vorbehalten.</small></p>
+    `
+  };
+
+  function switchContent(event) {
+    const btns = document.querySelectorAll('.btn');
+    btns.forEach(b => b.classList.remove('active'));
+    const btn = event.currentTarget;
+    btn.classList.add('active');
+
+    const key = btn.getAttribute('data-key');
+    const content = contentData[key] || "<p>Inhalt nicht verfügbar.</p>";
+    document.getElementById('content').innerHTML = content;
+  }
+</script>
+</body>
+</html>
