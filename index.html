@@ -1,288 +1,48 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Arduino & ESP32 Projekte</title>
+<!-- Support Formular -->
+<section id="support">
+  <form id="supportForm">
+    <h2>Support kontaktieren</h2>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required placeholder="Dein Name" />
+    <label for="email">E-Mail</label>
+    <input type="email" id="email" name="email" required placeholder="Deine E-Mail" />
+    <label for="message">Nachricht</label>
+    <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht"></textarea>
+    <button type="submit">Absenden</button>
+  </form>
+
+  <div id="msg" class="chat-box"></div>
+</section>
+
 <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    background: #f9fafb;
-    color: #222;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  header {
-    background: #0e76a8;
-    color: white;
-    padding: 1rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-align: center;
-  }
-  main {
-    flex: 1;
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-  .intro {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .intro h1 {
-    margin-bottom: 0.2rem;
-    color: #0e76a8;
-  }
-  .intro p {
-    color: #555;
-    font-size: 1.1rem;
-  }
-
-  .category-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  .category-button {
-    cursor: pointer;
-    text-align: center;
-    width: 130px;
-  }
-  .category-button img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    transition: transform 0.2s ease;
-  }
-  .category-button:hover img {
-    transform: scale(1.05);
-  }
-  .category-button span {
-    display: block;
-    margin-top: 0.5rem;
-    font-weight: 600;
-    color: #0e76a8;
-  }
-
-  .content-section {
-    background: white;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    margin-bottom: 3rem;
-    display: none;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  .content-section.active {
-    display: block;
-  }
-
-  /* Support Formular */
-  form {
+  /* Chat-Kästchen Style */
+  .chat-box {
     max-width: 600px;
-    margin: 0 auto 3rem;
-    background: white;
-    padding: 1.5rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  form h2 {
-    text-align: center;
-    color: #0e76a8;
-    margin-bottom: 1rem;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.3rem;
+    margin: 1rem auto 3rem;
+    padding: 1rem 1.2rem;
+    border-radius: 16px;
     font-weight: 600;
-  }
-  input, textarea {
-    width: 100%;
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
     font-size: 1rem;
-    resize: vertical;
+    max-width: 100%;
+    word-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
-  button {
-    background: #0e76a8;
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    transition: background-color 0.3s ease;
+  .chat-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1.5px solid #c3e6cb;
   }
-  button:hover {
-    background: #085a82;
-  }
-  #msg {
-    margin-top: 1rem;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  footer {
-    background: #ececec;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  footer a {
-    color: #0e76a8;
-    text-decoration: none;
-  }
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  /* Discord Widget verstecken */
-  #discord-widget {
-    display: none;
+  .chat-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1.5px solid #f5c6cb;
   }
 </style>
-</head>
-<body>
-
-<header>Arduino & ESP32 Projekte</header>
-
-<main>
-  <section class="intro">
-    <h1>🔒 Arduino Parkplatz mit Lasersicherung</h1>
-    <p>Automatisierter Parkplatz mit Laserschranke, LCD, IR-Sensor und Piezo-Warnung – Schulprojekt Mittelschule Graz Strassgang</p>
-  </section>
-
-  <section class="category-buttons">
-    <div class="category-button" data-target="arduino">
-      <img src="https://cdn-icons-png.flaticon.com/512/3126/3126573.png" alt="Arduino Icon" />
-      <span>Arduino</span>
-    </div>
-    <div class="category-button" data-target="esp32">
-      <img src="https://cdn-icons-png.flaticon.com/512/906/906334.png" alt="ESP32 Icon" />
-      <span>ESP32</span>
-    </div>
-    <div class="category-button" data-target="wifijammer">
-      <img src="https://cdn-icons-png.flaticon.com/512/994/994930.png" alt="WiFi Jammer Icon" />
-      <span>WiFi Jammer</span>
-    </div>
-    <div class="category-button" data-target="tutorials">
-      <img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" alt="Tutorials Icon" />
-      <span>Tutorials</span>
-    </div>
-  </section>
-
-  <!-- Inhalte -->
-  <section id="arduino" class="content-section">
-    <h2>🔒 Arduino Parkplatz mit Lasersicherung</h2>
-    <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die <strong>Mittelschule Graz Strassgang</strong>.</p>
-    <p>🔗 <strong>Live ansehen</strong>: <a href="https://dein-vercel-link.vercel.app" target="_blank" rel="noopener">Hier geht’s zur Website</a></p>
-    <h3>🚀 Funktionen</h3>
-    <ul>
-      <li>Automatische Schrankenöffnung per Lasersensor</li>
-      <li>Bewegungserkennung mit IR-Sensor</li>
-      <li>Warnanzeige auf LCD-Display</li>
-      <li>Piezo-Warnton bei Zutritt</li>
-      <li>Visuelle Anleitung &amp; Upload-Bereich für STL-Dateien und Modelle</li>
-      <li>Suche &amp; Sortierung nach 3D-Modellen, Druckern, Roblox-Skripten u. v. m.</li>
-      <li>DSGVO-konformer Cookie- und Sicherheitshinweis</li>
-      <li>Impressum &amp; Kontakt</li>
-    </ul>
-    <h3>📦 Inhalte der Website</h3>
-    <ul>
-      <li>Projektbeschreibung</li>
-      <li>Schaltplan &amp; Komponentenliste</li>
-      <li>Sicherheits- und Warnhinweise (in Orange hervorgehoben)</li>
-      <li>Downloadbereich &amp; Upload-Button</li>
-      <li>Suche nach Modellen/Skripten</li>
-      <li>Impressum, Kontakt &amp; Datenschutzhinweis</li>
-      <li>404-Seite bei Fehlern</li>
-      <li>Changelog / Änderungen am Projekt</li>
-    </ul>
-    <h3>🏫 Über uns</h3>
-    <p>Erstellt im Rahmen eines Schulprojekts an der <a href="https://www.holzmsgraz.at" target="_blank" rel="noopener">Mittelschule Graz Strassgang</a>.</p>
-    <p>Made with ❤️ von Felix & Thomas.</p>
-  </section>
-
-  <section id="esp32" class="content-section">
-    <h2>ESP32 Bereich</h2>
-    <p>Hier werden Infos zu ESP32-Projekten folgen.</p>
-    <p><em>Update coming soon...</em></p>
-  </section>
-
-  <section id="wifijammer" class="content-section">
-    <h2>WiFi Jammer Bereich</h2>
-    <p>Hier werden Infos zu WiFi Jammer Projekten folgen.</p>
-    <p><em>Update coming soon...</em></p>
-  </section>
-
-  <section id="tutorials" class="content-section">
-    <h2>Tutorials</h2>
-    <p>Die Tutorials werden hier bald erscheinen.</p>
-    <p><em>Update coming soon...</em></p>
-  </section>
-
-  <!-- Support Formular -->
-  <section id="support">
-    <form id="supportForm">
-      <h2>Support kontaktieren</h2>
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required placeholder="Dein Name" />
-      <label for="email">E-Mail</label>
-      <input type="email" id="email" name="email" required placeholder="Deine E-Mail" />
-      <label for="message">Nachricht</label>
-      <textarea id="message" name="message" rows="5" required placeholder="Deine Nachricht"></textarea>
-      <button type="submit">Absenden</button>
-      <div id="msg"></div>
-    </form>
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2025 Felix & Thomas | <a href="mailto:felixepic91@gmail.com">Kontakt</a> | <a href="#">Impressum</a></p>
-</footer>
-
-<!-- Verstecktes Discord Widget -->
-<div id="discord-widget">
-  <iframe src="https://discord.com/widget?id=1331653812431093841&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-</div>
 
 <script>
-  // Inhalte anzeigen beim Klick auf Button
-  const buttons = document.querySelectorAll('.category-button');
-  const sections = document.querySelectorAll('.content-section');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.getAttribute('data-target');
-      sections.forEach(sec => {
-        if (sec.id === target) {
-          sec.classList.add('active');
-          sec.scrollIntoView({behavior: "smooth"});
-        } else {
-          sec.classList.remove('active');
-        }
-      });
-    });
-  });
-
-  // Discord Webhook Support Formular senden
   const form = document.getElementById('supportForm');
   const msgDiv = document.getElementById('msg');
+
   form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -292,7 +52,7 @@
 
     if (!name || !email || !message) {
       msgDiv.textContent = 'Bitte alle Felder ausfüllen.';
-      msgDiv.style.color = 'red';
+      msgDiv.className = 'chat-box error';
       return;
     }
 
@@ -308,18 +68,15 @@
       body: JSON.stringify(payload),
     }).then(res => {
       if (res.ok) {
-        msgDiv.textContent = 'Nachricht erfolgreich gesendet!';
-        msgDiv.style.color = 'green';
+        msgDiv.textContent = '✅ Nachricht erfolgreich gesendet!';
+        msgDiv.className = 'chat-box success';
         form.reset();
       } else {
         throw new Error('Fehler beim Senden.');
       }
     }).catch(() => {
-      msgDiv.textContent = 'Fehler beim Senden. Bitte später erneut versuchen.';
-      msgDiv.style.color = 'red';
+      msgDiv.textContent = '❌ Fehler beim Senden. Bitte später erneut versuchen.';
+      msgDiv.className = 'chat-box error';
     });
   });
 </script>
-
-</body>
-</html>
