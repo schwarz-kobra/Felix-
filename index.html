@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Arduino Projekt - Update Coming Soon</title>
+<title>Arduino & ESP32 Projekte</title>
 <style>
   body {
-    margin: 0; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; 
     background: #f9fafb;
     color: #222;
     display: flex;
@@ -21,29 +21,83 @@
     font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
   main {
     flex: 1;
-    max-width: 600px;
-    margin: 3rem auto 2rem;
-    padding: 1rem;
-    text-align: center;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
   }
-  h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+  .intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .intro h1 {
+    margin-bottom: 0.2rem;
     color: #0e76a8;
   }
-  p.update {
-    font-size: 1.2rem;
+  .intro p {
     color: #555;
-    margin-bottom: 3rem;
+    font-size: 1.1rem;
   }
+
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .category-button {
+    cursor: pointer;
+    text-align: center;
+    width: 130px;
+  }
+  .category-button img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease;
+  }
+  .category-button:hover img {
+    transform: scale(1.05);
+  }
+  .category-button span {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #0e76a8;
+  }
+
+  .content-section {
+    background: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    display: none;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .content-section.active {
+    display: block;
+  }
+
+  /* Support Formular */
   form {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  form h2 {
+    text-align: center;
+    color: #0e76a8;
+    margin-bottom: 1rem;
   }
   label {
     display: block;
@@ -68,6 +122,8 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    display: block;
+    margin: 0 auto;
     transition: background-color 0.3s ease;
   }
   button:hover {
@@ -76,14 +132,15 @@
   #msg {
     margin-top: 1rem;
     font-weight: 600;
+    text-align: center;
   }
+
   footer {
     background: #ececec;
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
     color: #666;
-    margin-top: auto;
   }
   footer a {
     color: #0e76a8;
@@ -96,86 +153,59 @@
 </head>
 <body>
 
-<header>Arduino Projekt</header>
+<header>Arduino & ESP32 Projekte</header>
 
 <main>
-  <h1>Update coming soon</h1>
-  <p class="update">Unsere Website und Tutorials werden gerade überarbeitet und sind bald wieder verfügbar. Vielen Dank für deine Geduld!</p>
-  
-  <h2>Support-Anfrage</h2>
-  <form id="supportForm">
-    <label for="name">Name *</label>
-    <input type="text" id="name" required placeholder="Dein Name" />
-    
-    <label for="email">E-Mail *</label>
-    <input type="email" id="email" required placeholder="Deine E-Mail" />
-    
-    <label for="message">Nachricht *</label>
-    <textarea id="message" rows="5" required placeholder="Deine Nachricht an uns"></textarea>
-    
-    <button type="submit">Nachricht senden</button>
-    <div id="msg"></div>
-  </form>
-</main>
+  <section class="intro">
+    <h1>🔒 Arduino Parkplatz mit Lasersicherung</h1>
+    <p>Automatisierter Parkplatz mit Laserschranke, LCD, IR-Sensor und Piezo-Warnung – Schulprojekt Mittelschule Graz Strassgang</p>
+  </section>
 
-<footer>
-  <p>
-    &copy; 2025 Felix & Thomas | <a href="https://www.holzmsgraz.at/" target="_blank" rel="noopener noreferrer">Mittelschule Graz Strassgang</a> | 
-    <a href="mailto:felixepic91@gmail.com">Kontakt</a> | 
-    <a href="https://dein-vercel-link.vercel.app/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
-  </p>
-</footer>
+  <section class="category-buttons">
+    <div class="category-button" data-target="arduino">
+      <img src="https://cdn-icons-png.flaticon.com/512/3126/3126573.png" alt="Arduino Icon" />
+      <span>Arduino</span>
+    </div>
+    <div class="category-button" data-target="esp32">
+      <img src="https://cdn-icons-png.flaticon.com/512/906/906334.png" alt="ESP32 Icon" />
+      <span>ESP32</span>
+    </div>
+    <div class="category-button" data-target="wifijammer">
+      <img src="https://cdn-icons-png.flaticon.com/512/994/994930.png" alt="WiFi Jammer Icon" />
+      <span>WiFi Jammer</span>
+    </div>
+    <div class="category-button" data-target="tutorials">
+      <img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" alt="Tutorials Icon" />
+      <span>Tutorials</span>
+    </div>
+  </section>
 
-<script>
-  const webhookURL = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
-
-  document.getElementById('supportForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const msgDiv = document.getElementById('msg');
-    msgDiv.textContent = "";
-
-    if (!name || !email || !message) {
-      msgDiv.style.color = 'red';
-      msgDiv.textContent = "Bitte alle Felder ausfüllen.";
-      return;
-    }
-
-    const discordMessage = {
-      content: null,
-      embeds: [{
-        title: "Neue Support-Anfrage",
-        color: 3447003,
-        fields: [
-          { name: "Name", value: name, inline: true },
-          { name: "E-Mail", value: email, inline: true },
-          { name: "Nachricht", value: message }
-        ],
-        timestamp: new Date().toISOString()
-      }]
-    };
-
-    try {
-      const response = await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(discordMessage)
-      });
-      if (response.ok) {
-        msgDiv.style.color = 'green';
-        msgDiv.textContent = "Deine Nachricht wurde erfolgreich gesendet. Danke!";
-        this.reset();
-      } else {
-        throw new Error("Fehler beim Senden");
-      }
-    } catch (error) {
-      msgDiv.style.color = 'red';
-      msgDiv.textContent = "Beim Senden ist ein Fehler aufgetreten. Bitte später noch einmal versuchen.";
-    }
-  });
-</script>
-
-</body>
-</html>
+  <!-- Inhalte -->
+  <section id="arduino" class="content-section">
+    <h2>🔒 Arduino Parkplatz mit Lasersicherung</h2>
+    <p>Willkommen beim Arduino-Schulprojekt: Ein intelligenter, automatisierter Parkplatz mit Laserschranke, LCD, IR-Bewegungssensor und Piezo-Warnung – entwickelt für die <strong>Mittelschule Graz Strassgang</strong>.</p>
+    <p>🔗 <strong>Live ansehen</strong>: <a href="https://dein-vercel-link.vercel.app" target="_blank" rel="noopener">Hier geht’s zur Website</a></p>
+    <h3>🚀 Funktionen</h3>
+    <ul>
+      <li>Automatische Schrankenöffnung per Lasersensor</li>
+      <li>Bewegungserkennung mit IR-Sensor</li>
+      <li>Warnanzeige auf LCD-Display</li>
+      <li>Piezo-Warnton bei Zutritt</li>
+      <li>Visuelle Anleitung &amp; Upload-Bereich für STL-Dateien und Modelle</li>
+      <li>Suche &amp; Sortierung nach 3D-Modellen, Druckern, Roblox-Skripten u. v. m.</li>
+      <li>DSGVO-konformer Cookie- und Sicherheitshinweis</li>
+      <li>Impressum &amp; Kontakt</li>
+    </ul>
+    <h3>📦 Inhalte der Website</h3>
+    <ul>
+      <li>Projektbeschreibung</li>
+      <li>Schaltplan &amp; Komponentenliste</li>
+      <li>Sicherheits- und Warnhinweise (in Orange hervorgehoben)</li>
+      <li>Downloadbereich &amp; Upload-Button</li>
+      <li>Suche nach Modellen/Skripten</li>
+      <li>Impressum, Kontakt &amp; Datenschutzhinweis</li>
+      <li>404-Seite bei Fehlern</li>
+      <li>Changelog / Änderungen am Projekt</li>
+    </ul>
+    <h3>🏫 Über uns</h3>
+    <p>Erstellt im Rahmen eines Schulprojekts an der <a href="https://www.holzmsgraz.at" target="_blank" rel="
