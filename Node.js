@@ -1,4 +1,4 @@
-/project
-  /public  <-- deine alte Website + index.html
-  server.js
-  package.json
+mkdir song-video-generator
+cd song-video-generator
+npm init -y
+npm install express body-parser
