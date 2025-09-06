@@ -1,199 +1,85 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>Arduino Parkplatz Projekt</title>
+  <meta charset="UTF-8">
+  <title>Projekt Upload</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f0f2f5;
-      color: #333;
-    }
-    header {
-      background: #1e1e2f;
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    main {
-      padding: 2rem;
-    }
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .card {
-      width: 200px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      overflow: hidden;
-    }
-    .card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-    }
-    .card p {
-      padding: 1rem;
-      font-weight: bold;
-    }
-    .section {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      padding: 2rem;
-      color: #666;
-    }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    button {
-      padding: 0.75rem 2rem;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .status {
-      margin-top: 1rem;
-      font-weight: bold;
-    }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 2rem; }
+    h1 { text-align: center; }
+    form { max-width: 500px; margin: auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 8px; }
+    button { padding: 0.75rem 2rem; background: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    .status { margin-top: 1rem; font-weight: bold; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🔒 Arduino Parkplatz mit Lasersicherung</h1>
-    <p>Ein Schulprojekt der Mittelschule Graz Strassgang</p>
-  </header>
-
-  <main>
-    <div class="cards">
-      <div class="card">
-        <img src="/images/arduino.jpg" alt="Arduino">
-        <p>Arduino</p>
-      </div>
-      <div class="card">
-        <img src="/images/3d-modelle.jpg" alt="3D Modelle">
-        <p>3D Modelle</p>
-      </div>
-      <div class="card">
-        <img src="/images/roblox.jpg" alt="Roblox Skripte">
-        <p>Roblox</p>
-      </div>
-      <div class="card">
-        <img src="/images/tutorials.jpg" alt="Tutorials">
-        <p>Tutorials</p>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>📬 Support-Anfrage</h2>
-      <div class="form-group">
-        <input type="text" id="name" placeholder="Dein Name" required />
-        <input type="email" id="email" placeholder="Deine E-Mail" required />
-        <input type="text" id="discord" placeholder="Dein Discord-Name" required />
-        <textarea id="message" placeholder="Deine Nachricht" rows="5" required></textarea>
-        <button onclick="sendSupport()">Absenden</button>
-        <div id="statusMsg" class="status"></div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h3ℹ️ Update</h3>
-      <p>Update coming soon...</p>
-    </div>
-  </main>
-
-  <footer>
-    <p>© 2025 Felix & Thomas – Mittelschule Graz Strassgang</p>
-    <p><a href="mailto:felixepic91@gmail.com">Kontakt</a> | <a href="#">Impressum</a> | DSGVO-konform</p>
-  </footer>
+  <h1>Projekt Upload</h1>
+  <form id="uploadForm">
+    <input type="text" id="title" placeholder="Titel des Projekts" required>
+    <textarea id="description" placeholder="Beschreibung" rows="4" required></textarea>
+    <input type="file" id="file" accept="image/*,video/*" required>
+    <button type="submit">Absenden</button>
+    <div id="status" class="status"></div>
+  </form>
 
   <script>
-    async function sendSupport() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const discord = document.getElementById("discord").value.trim();
-      const message = document.getElementById("message").value.trim();
-      const status = document.getElementById("statusMsg");
+    const form = document.getElementById('uploadForm');
+    const status = document.getElementById('status');
 
-      if (!name || !email || !discord || !message) {
-        status.style.color = "red";
-        status.textContent = "Bitte fülle alle Felder aus.";
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const fileInput = document.getElementById('file');
+      const file = fileInput.files[0];
+
+      if (!title || !description || !file) {
+        status.style.color = 'red';
+        status.textContent = 'Bitte alle Felder ausfüllen!';
         return;
       }
 
-      const webhook = "https://discord.com/api/webhooks/1393936108143775855/3G0ANiz7oKTj8_njmCLfPq8wVMxTk5pJ05uU4v0OpyPgM29QAj2uIge4v2N_wwfwvaKv";
+      const webhook = "https://discord.com/api/webhooks/1413846321118576700/L-C-k4qduyDg__ngpeJRnOPHgrlm1jM8u_9XuFN2AaTjgPhgwwzFq0j0WgA6QuluA3IG"; // <-- Hier Webhook einfügen
 
-      const payload = {
-        username: "Support Bot",
-        embeds: [
-          {
-            title: "Neue Support-Nachricht",
+      // Datei als Base64 umwandeln (Discord kann Anhänge direkt verarbeiten, aber Base64 funktioniert)
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64Data = reader.result.split(',')[1];
+
+        const payload = {
+          username: "Projekt Upload Bot",
+          embeds: [{
+            title: title,
+            description: description,
             color: 0x00AAFF,
-            fields: [
-              { name: "👤 Name", value: name, inline: true },
-              { name: "📧 E-Mail", value: email, inline: true },
-              { name: "💬 Discord", value: discord },
-              { name: "📝 Nachricht", value: message }
-            ],
-            timestamp: new Date(),
-            footer: { text: "Arduino Support System" }
-          }
-        ],
-        components: [
-          {
-            type: 1,
-            components: [
-              {
-                type: 2,
-                style: 5,
-                label: "Im Discord antworten",
-                url: "https://discord.com/channels/1331653812431093841"
-              }
-            ]
-          }
-        ]
-      };
+            timestamp: new Date()
+          }],
+          files: [
+            {
+              name: file.name,
+              file: base64Data
+            }
+          ]
+        };
 
-      try {
-        const res = await fetch(webhook, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-          status.style.color = "green";
-          status.textContent = "Erfolgreich gesendet! Wir melden uns bald.";
-        } else {
-          throw new Error("Fehler beim Senden.");
+        try {
+          await fetch(webhook, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          status.style.color = 'green';
+          status.textContent = 'Erfolgreich gesendet!';
+          form.reset();
+        } catch (err) {
+          console.error(err);
+          status.style.color = 'red';
+          status.textContent = 'Fehler beim Absenden.';
         }
-      } catch (err) {
-        console.error(err);
-        status.style.color = "red";
-        status.textContent = "Fehler beim Absenden. Bitte versuch es später erneut.";
-      }
-    }
+      };
+      reader.readAsDataURL(file);
+    });
   </script>
 </body>
 </html>
