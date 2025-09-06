@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix Projekte</title>
+<style>
+  body { margin:0; font-family: Arial, sans-serif; background:#f0f2f5; color:#333; }
+  header { background:#1e1e2f; color:white; padding:1rem 2rem; display:flex; align-items:center; }
+  header h1 { margin:0; font-size:1.5rem; flex:1; }
+  .btn-back { padding:0.5rem 1rem; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer; text-decoration:none; }
+  .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; padding:2rem; max-width:1200px; margin:auto; }
+  .card { background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
+  .card:hover { transform:translateY(-5px); }
+  .card img { width:100%; height:150px; object-fit:cover; }
+  .card-content { padding:1rem; }
+  .card-content h3 { margin:0 0 0.5rem 0; }
+  .card-content p { margin:0; font-size:0.9rem; }
+  @media(max-width:600px){header{flex-direction:column;align-items:flex-start;}.btn-back{margin-top:0.5rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Alle Projekte</h1>
+  <a href="index.html" class="btn-back">⬅ Zurück</a>
+</header>
+
+<div class="projects">
+  <div class="card">
+    <img src="https://via.placeholder.com/300x150.png?text=Projekt+1" alt="Projekt 1">
+    <div class="card-content">
+      <h3>Projekt 1</h3>
+      <p>Kurzbeschreibung Projekt 1</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x150.png?text=Projekt+2" alt="Projekt 2">
+    <div class="card-content">
+      <h3>Projekt 2</h3>
+      <p>Kurzbeschreibung Projekt 2</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x150.png?text=Projekt+3" alt="Projekt 3">
+    <div class="card-content">
+      <h3>Projekt 3</h3>
+      <p>Kurzbeschreibung Projekt 3</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x150.png?text=Projekt+4" alt="Projekt 4">
+    <div class="card-content">
+      <h3>Projekt 4</h3>
+      <p>Kurzbeschreibung Projekt 4</p>
+    </div>
+  </div>
+  <!-- Weitere Projekte hier -->
+</div>
+
+</body>
+</html>
