@@ -3,158 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Felix Portfolio</title>
+<title>Felix Projekte</title>
 <style>
-  body { margin:0; font-family: Arial, sans-serif; background:#f0f2f5; color:#333; }
-  header { background:#1e1e2f; color:white; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000; }
-  header h1 { margin:0; font-size:1.5rem; }
-  nav a { color:white; margin-left:1rem; text-decoration:none; font-weight:bold; }
-  nav a:hover { text-decoration:underline; }
-  .hero { text-align:center; padding:4rem 2rem; background: linear-gradient(to right, #667eea, #764ba2); color:white; }
-  .hero img { width:150px; border-radius:50%; border:4px solid white; }
-  main { padding:2rem; max-width:1200px; margin:auto; }
-  .section { margin-bottom:4rem; }
-  h2 { margin-bottom:1rem; color:#1e1e2f; }
-  .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
-  .card { background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
-  .card:hover { transform:translateY(-5px); }
-  .card img { width:100%; height:150px; object-fit:cover; }
-  .card-content { padding:1rem; }
-  .card-content h3 { margin:0 0 0.5rem 0; }
-  .card-content p { margin:0; font-size:0.9rem; }
-  .btn { padding:0.75rem 2rem; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer; text-decoration:none; display:inline-block; }
-  footer { text-align:center; padding:2rem; font-size:0.9rem; color:#666; background:#f0f2f5; }
-  @media(max-width:600px){header{flex-direction:column;align-items:flex-start;}nav{margin-top:0.5rem;}}
+  /* Allgemein */
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+  body { background: #f0f2f5; color: #333; }
+  a { text-decoration: none; color: inherit; }
+
+  /* Header */
+  header {
+    background: #1e1e2f;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+  header nav { margin-top: 1rem; }
+  header nav a {
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    background: #2c2c45;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+  header nav a:hover { background: #444466; }
+
+  /* Hero Bereich */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+  .hero p { max-width: 700px; margin-top: 1rem; font-size: 1.1rem; color: #555; }
+
+  /* Projekte Grid */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+  .card img { width: 100%; height: 160px; object-fit: cover; }
+  .card-content { padding: 1rem; }
+  .card-content h3 { margin-bottom: 0.5rem; }
+  .card-content p { font-size: 0.95rem; color: #555; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: #1e1e2f;
+    color: #ccc;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive Anpassungen */
+  @media(max-width:600px){
+    header h1 { font-size: 1.8rem; }
+    header nav a { margin: 0.3rem; display: inline-block; }
+    .card img { height: 140px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Felix Portfolio</h1>
+  <h1>Felix Projekte</h1>
   <nav>
-    <a href="#start">Startseite</a>
-    <a href="projekte.html">Projekte</a>
-    <a href="#kontaktSection">Kontakt</a>
+    <a href="index.html">Startseite</a>
+    <a href="projects.html">Projekte</a>
+    <a href="#contact">Kontakt</a>
     <a href="#impressum">Impressum</a>
   </nav>
 </header>
 
-<section class="hero" id="start">
-  <img src="data:image/jpeg;base64,/9j/4AAQ..." alt="Profilbild">
-  <h2>Hallo, ich bin Felix</h2>
-  <p>Schüler an der Mittelschule Graz Strassgang. Ich entwickle Projekte in Arduino, 3D-Modellen, Roblox und Tutorials.</p>
+<section class="hero">
+  <p>Willkommen auf meiner Projektseite! Hier zeige ich meine besten Arbeiten aus den Bereichen Arduino, 3D-Modelle, Roblox-Skripte und Tutorials. Klicke auf "Projekte", um alle meine Arbeiten zu entdecken.</p>
 </section>
 
-<main>
-<div class="section" id="startProjects">
-  <h2>📂 Projekte</h2>
-  <div class="projects">
-    <div class="card">
-      <img src="https://via.placeholder.com/300x150.png?text=Projekt+1" alt="Projekt 1">
-      <div class="card-content">
-        <h3>Projekt 1</h3>
-        <p>Kurzbeschreibung Projekt 1</p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/300x150.png?text=Projekt+2" alt="Projekt 2">
-      <div class="card-content">
-        <h3>Projekt 2</h3>
-        <p>Kurzbeschreibung Projekt 2</p>
-      </div>
+<section class="projects">
+  <div class="card">
+    <img src="https://via.placeholder.com/300x160.png?text=Projekt+1" alt="Projekt 1">
+    <div class="card-content">
+      <h3>Projekt 1</h3>
+      <p>Kurzbeschreibung Projekt 1.</p>
     </div>
   </div>
-  <a href="projekte.html" class="btn">Alle Projekte anzeigen</a>
-</div>
-
-<div class="section" id="kontaktSection">
-  <h2>📬 Kontakt</h2>
-  <button class="btn" onclick="toggleContact()">Kontakt</button>
-  <div id="contactForm" style="display:none; margin-top:2rem;">
-    <div class="form-group">
-      <input type="text" id="name" value="Felix" placeholder="Name" required>
-      <input type="email" id="email" placeholder="E-Mail" required>
-      <input type="tel" id="telefon" placeholder="Telefonnummer (optional)">
-      <textarea id="message" placeholder="Dein Problem / Nachricht" rows="5" required></textarea>
-      <button onclick="sendContact()">Absenden</button>
-      <div id="statusMsg" class="status"></div>
+  <div class="card">
+    <img src="https://via.placeholder.com/300x160.png?text=Projekt+2" alt="Projekt 2">
+    <div class="card-content">
+      <h3>Projekt 2</h3>
+      <p>Kurzbeschreibung Projekt 2.</p>
     </div>
   </div>
-</div>
-
-<div class="section" id="impressum">
-  <h2>📄 Impressum</h2>
-  <p>Portfolio erstellt von Felix.</p>
-  <p>Alle Bilder stammen aus lizenzfreien Quellen oder wurden selbst erstellt.</p>
-  <p>Kontakt: <a href="mailto:felix@example.com">felix@example.com</a></p>
-</div>
-
-</main>
+</section>
 
 <footer>
   <p>© 2025 Felix – Mittelschule Graz Strassgang</p>
+  <p id="impressum">Alle Bilder von Projekten stammen aus freien Quellen oder eigenen Arbeiten. Kontakt: felixepic91@gmail.com</p>
 </footer>
-
-<script>
-function toggleContact() {
-  const form = document.getElementById("contactForm");
-  form.style.display = form.style.display === "none" ? "block" : "none";
-}
-
-async function sendContact() {
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const telefon = document.getElementById("telefon").value.trim();
-  const message = document.getElementById("message").value.trim();
-  const status = document.getElementById("statusMsg");
-
-  if (!name || !email || !message) {
-    status.style.color = "red";
-    status.textContent = "Bitte Name, E-Mail und Nachricht ausfüllen.";
-    return;
-  }
-
-  const webhook = "https://discord.com/api/webhooks/1413846321118576700/L-C-k4qduyDg__ngpeJRnOPHgrlm1jM8u_9XuFN2AaTjgPhgwwzFq0j0WgA6QuluA3IG"; // Discord Webhook einfügen
-
-  const payload = {
-    username: "Kontakt Bot",
-    embeds: [
-      {
-        title: "Neue Kontakt-Nachricht",
-        color: 0x00AAFF,
-        fields: [
-          { name: "👤 Name", value: name, inline: true },
-          { name: "📧 E-Mail", value: email, inline: true },
-          { name: "📞 Telefon", value: telefon || "Keine Angabe", inline: true },
-          { name: "📝 Nachricht", value: message }
-        ],
-        timestamp: new Date(),
-        footer: { text: "Portfolio Kontaktformular" }
-      }
-    ]
-  };
-
-  try {
-    const res = await fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-
-    if (res.ok) {
-      status.style.color = "green";
-      status.textContent = "Erfolgreich gesendet!";
-      document.getElementById("message").value = "";
-    } else {
-      throw new Error("Fehler beim Senden.");
-    }
-  } catch (err) {
-    console.error(err);
-    status.style.color = "red";
-    status.textContent = "Fehler beim Absenden.";
-  }
-}
-</script>
 
 </body>
 </html>
