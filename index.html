@@ -3,6 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix Portfolio</title>
+<style>
+  body { margin:0; font-family: Arial, sans-serif; background:#f0f2f5; color:#333; }
+  header { background:#1e1e2f; color:white; padding:1rem 2rem; position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; z-index:1000; }
+  header h1 { margin:0; font-size:1.5rem; }
+  nav a { color:white; margin-left:1rem; text-decoration:none; font-weight:bold; }
+  nav a:hover { text-decoration:underline; }
+  .hero { text-align:center; padding:4rem 2rem; background: linear-gradient(to right, #667eea, #764ba2); color:white; }
+  .hero img { width:150px; border-radius:50%; border:4px solid white; }
+  main { padding:2rem; max-width:1200px; margin:auto; }
+  .section { margin-bottom:4rem; }
+  h2 { margin-bottom:1rem; color:#1e1e2f; }
+  .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+  .card { background:white; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s; }
+  .card:hover { transform:translateY(-5px); }
+  .card img { width:100%; height:150px; object-fit:cover; }
+  .card-content { padding:1rem; }
+  .card-content h3 { margin:0 0 0.5rem 0; }
+  .card-content p { margin:0; font-size:0.9rem; }
+  .btn { padding:0.75rem 2rem; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer; }
+  .btn:hover { background:#0056b3; }
+  #contactForm { display:none; margin-top:2rem; }
+  .form-group input, .form-group textarea { width:100%; padding:0.75rem; margin-bottom:1rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; }
+  .status { margin-top:0.5rem; font-weight:bold; }
+  footer { text-align:center; padding:2rem; font-size:0.9rem; color:#666; background:#f0f2f5; }
+  @media(max-width:600px){header{flex-direction:column;align-items:flex-start;}nav{margin-top:0.5rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Felix Portfolio</h1>
+  <nav>
+    <a href="#start">Startseite</a>
+    <a href="#projekte">Projekte</a>
+    <a href="#kontaktSection">Kontakt</a>
+    <a href="#impressum">Impressum</a>
+  </nav>
+</header>
+
+<section class="hero" id="start">
+  <img src="data:image/jpeg;base64,/9j/4AAQ..." alt="Profilbild">
+  <h2>Hallo, ich bin Felix</h2>
+  <p>Schüler an der Mittelschule Graz Strassgang. Ich entwickle Projekte in Arduino, 3D-Modellen, Roblox und Tutorials.</p>
+</section>
+
+<main>
+<div class="section" id="projekte">
+  <h2>📂 Projekte</h2>
+  <div class="projects" id="startProjects">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150.png?text=Projekt+1" alt="Projekt 1">
+      <div class="card-content">
+        <h3>Projekt 1</h3>
+        <p>Kurzbeschreibung Projekt 1</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150.png?text=Projekt+2" alt="Projekt 2">
+      <div class="card-content">
+        <h3>Projekt 2</h3>
+        <p>Kurzbeschreibung Projekt 2</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="showAllProjects()">Alle Projekte anzeigen</button>
+  <div class="projects" id="allProjects" style="display:none;">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150.png?text=Projekt+3" alt="Projekt 3">
+      <div class="card-content">
+        <h3>Projekt 3</h3>
+        <p>Kurzbeschreibung Projekt 3</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150.png?text=Projekt+4" alt="Projekt 4">
+      <div class="card-content">
+        <h3>Projekt 4</h3>
+        <p>Kurzbeschreibung Projekt 4</p>
+      </div>
+    </div>
+    <!-- Weitere Projekte hier -->
+  </div>
+</div>
+
+<div class="section" id="kontaktSection">
+  <h2>📬 Kontakt</h2>
+  <button class="btn" onclick="toggleContact()">Kontakt</button>
+  <div id="contactForm">
+    <div class="form-group">
+      <input type="text" id="name" value="Felix" placeholder="Name" required>
+      <input type="email" id="email" placeholder="E-Mail" required>
+      <input type="tel" id="telefon" placeholder="Telefonnummer (optional)">
+      <textarea id="message" placeholder="Dein Problem / Nachricht" rows="5" required></textarea>
+      <button onclick="sendContact()">Absenden</button>
+      <div id="statusMsg" class="status"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="impressum">
+  <h2>📄 Impressum</h2>
+  <p>Portfolio erstellt von Felix.</p>
+  <p>Alle Bilder in Projekten stammen aus lizenzfreien Quellen (z.B. Unsplash, Pixabay, Pexels) oder wurden selbst erstellt.</p>
+  <p>Kontakt: <a href="mailto:felix@example.com">felix@example.com</a></p>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2025 Felix – Mittelschule Graz Strassgang</p>
+</footer>
+
+<script>
+function toggleContact() {
+  const form = document.getElementById("contactForm");
+  form.style.display = form.style.display === "none" ? "block" : "none";
+}
+
+function showAllProjects() {
+  document.getElementById("allProjects").style.display = "grid";
+  window.scrollTo({ top: document.getElementById("allProjects").offsetTop, behavior: 'smooth' });
+}
+
+async function sendContact() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefon = document.getElementById("telefon").value.trim();
+  const message = document.getElementById("message").value.trim();
+  const status = document.getElementById("statusMsg");
+
+  if (!name || !email || !message) {
+    status.style.color = "red";
+    status.textContent = "Bitte Name, E-Mail und Nachricht ausfüllen.";
+    return;
+  }
+
+  const webhook = "DEIN_DISCORD_WEBHOOK_HIER"; // <-- Discord Webhook einfügen
+
+  const payload = {
+    username: "Kontakt Bot",
+    embeds: [
+      {
+        title: "Neue Kontakt-Nachricht",
+        color: 0x00AAFF,
+        fields: [
+          { name: "👤 Name", value: name, inline: true },
+          { name: "📧 E-Mail", value: email, inline: true },
+          { name: "📞 Telefon", value: telefon || "Keine Angabe", inline: true },
+          { name: "📝 Nachricht", value: message }
+        ],
+        timestamp: new Date(),
+        footer: { text: "Portfolio Kontaktformular" }
+      }
+    ]
+  };
+
+  try {
+    const res = await fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      status.style.color = "green";
+      status.textContent = "Erfolgreich gesendet!";
+      document.getElementById("message").value = "";
+    } else {
+      throw new Error("Fehler beim Senden.");
+    }
+  } catch (err) {
+    console.error(err);
+    status.style.color = "red";
+    status.textContent = "Fehler beim Absenden.";
+  }
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mein Portfolio</title>
 <style>
   body { margin: 0; font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
