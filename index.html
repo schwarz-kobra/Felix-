@@ -5,86 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Felix' Projekte</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      color: #333;
-    }
-    header {
-      background-color: #1e1e2f;
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .intro {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .project-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      width: 300px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .project-card:hover {
-      transform: scale(1.03);
-    }
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .project-card h3 {
-      margin: 1rem 0;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    /* Responsive */
+    body { margin: 0; font-family: Arial, sans-serif; background: #f0f2f5; color: #333; }
+    header { background-color: #1e1e2f; color: white; padding: 1.5rem; text-align: center; }
+    nav a { color: white; text-decoration: none; margin: 0 1rem; font-weight: bold; }
+    main { max-width: 1000px; margin: auto; padding: 2rem; }
+    .intro { text-align: center; margin-bottom: 2rem; }
+    .projects { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .project-card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; width: 300px; text-align: center; cursor: pointer; transition: transform 0.3s; }
+    .project-card:hover { transform: scale(1.03); }
+    .project-card img { width: 100%; height: 200px; object-fit: cover; }
+    .project-card h3 { margin: 1rem 0 0.5rem 0; }
+    .project-card p { padding: 0 1rem 1rem 1rem; }
+    footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #666; background: #1e1e2f; color: white; }
     @media (max-width: 768px) {
-      .projects {
-        flex-direction: column;
-        align-items: center;
-      }
-      .project-card {
-        width: 90%;
-      }
+      .projects { flex-direction: column; align-items: center; }
+      .project-card { width: 90%; }
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Felix' Projekte</h1>
     <nav>
@@ -98,19 +37,21 @@
   <main>
     <div class="intro">
       <h2>Willkommen auf meiner Projektseite!</h2>
-      <p>Hier zeige ich meine aktuellen Projekte aus Schule, Arduino, Programmierung und mehr.</p>
+      <p>Hier zeige ich meine aktuellen Projekte aus Schule, Arduino, 3D-Druck und Programmierung.</p>
     </div>
 
     <div class="projects">
-      <div class="project-card" onclick="window.location.href='projects.html#projekt1'">
-        <img src="images/programming.png" alt="Projekt 1">
-        <h3>Projekt 1: Programmierung</h3>
-        <p>Kurzbeschreibung von Projekt 1</p>
+      <!-- Projekt 1: JBL Halterung -->
+      <div class="project-card" onclick="location.href='projects.html#projekt1'">
+        <img src="images/projekt1_jbl/img1.jpg" alt="JBL Box Halterung">
+        <h3>JBL Box Halterung</h3>
+        <p>3D-gedruckte Halterung für eine JBL Box. Mehr Infos auf der Projektseite.</p>
       </div>
-      <div class="project-card" onclick="window.location.href='projects.html#projekt2'">
-        <img src="images/arduino.jpg" alt="Projekt 2">
-        <h3>Projekt 2: Arduino</h3>
-        <p>Kurzbeschreibung von Projekt 2</p>
+      <!-- Projekt 2: Feueralarm ESP32 -->
+      <div class="project-card" onclick="location.href='projects.html#projekt2'">
+        <img src="images/projekt2_feueralarm/img1.jpg" alt="Feueralarm ESP32">
+        <h3>Feueralarm System</h3>
+        <p>ESP32-gesteuerter Feueralarm mit Benachrichtigungssystem.</p>
       </div>
     </div>
   </main>
@@ -118,6 +59,5 @@
   <footer>
     <p>© 2025 Felix – Alle Rechte vorbehalten</p>
   </footer>
-
 </body>
 </html>
