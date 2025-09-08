@@ -25,7 +25,6 @@
       text-decoration: none;
       margin: 0 1rem;
       font-weight: bold;
-      transition: 0.3s;
     }
     nav a:hover {
       text-decoration: underline;
@@ -48,16 +47,15 @@
     .project-card {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       overflow: hidden;
       width: 300px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
     }
     .project-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transform: scale(1.03);
     }
     .project-card img {
       width: 100%;
@@ -65,12 +63,7 @@
       object-fit: cover;
     }
     .project-card h3 {
-      margin: 1rem 0 0.5rem;
-    }
-    .project-card p {
-      padding: 0 1rem 1rem;
-      font-size: 0.95rem;
-      color: #555;
+      margin: 1rem 0;
     }
     footer {
       text-align: center;
@@ -105,24 +98,19 @@
   <main>
     <div class="intro">
       <h2>Willkommen auf meiner Projektseite!</h2>
-      <p>Hier zeige ich meine aktuellen Projekte aus Schule, Arduino, 3D-Druck, ESP32 und mehr.</p>
+      <p>Hier zeige ich meine aktuellen Projekte aus Schule, Arduino, Programmierung und mehr.</p>
     </div>
 
     <div class="projects">
-      <div class="project-card">
-        <img src="images/sos-tag.jpg" alt="SOS Tag mit NFC Chip">
-        <h3>SOS-Tag mit NFC-Chip</h3>
-        <p>Ein kleiner SOS-Tag, der über einen NFC-Chip wichtige Notfallinformationen bereitstellt.</p>
+      <div class="project-card" onclick="window.location.href='projects.html#projekt1'">
+        <img src="images/programming.png" alt="Projekt 1">
+        <h3>Projekt 1: Programmierung</h3>
+        <p>Kurzbeschreibung von Projekt 1</p>
       </div>
-      <div class="project-card">
-        <img src="images/jbl-halterung.jpg" alt="JBL Box Halterung 3D">
-        <h3>JBL Box Halterung</h3>
-        <p>3D-gedruckte Halterung für eine JBL Box, perfekt angepasst für sicheren Stand.</p>
-      </div>
-      <div class="project-card">
-        <img src="images/esp32-feueralarm.jpg" alt="Feueralarm ESP32">
-        <h3>Feueralarm mit ESP32</h3>
-        <p>Ein Feueralarm, der über den ESP32 steuerbar ist und im Notfall Warnungen sendet.</p>
+      <div class="project-card" onclick="window.location.href='projects.html#projekt2'">
+        <img src="images/arduino.jpg" alt="Projekt 2">
+        <h3>Projekt 2: Arduino</h3>
+        <p>Kurzbeschreibung von Projekt 2</p>
       </div>
     </div>
   </main>
