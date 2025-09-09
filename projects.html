@@ -3,127 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projekte – Felix' Projekte</title>
+  <title>Projekte – Felix</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      color: #333;
-    }
-    header {
-      background-color: #1e1e2f;
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
+    body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: #f9f9f9; color: #333; }
+    header { background: #4caf50; color: white; padding: 1.5rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    nav a { color: white; text-decoration: none; margin: 0 1rem; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    main { max-width: 1000px; margin: 2rem auto; padding: 1rem; }
     .project-card {
-      background: white;
-      border-radius: 12px;
+      background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s;
-      cursor: pointer;
     }
-    .project-card:hover {
-      transform: scale(1.03);
+    .project-card h2 { color: #4caf50; }
+    .download-btn {
+      display: inline-block; margin: 0.5rem; padding: 0.5rem 1rem;
+      background: #4caf50; color: white; text-decoration: none;
+      border-radius: 8px;
     }
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .project-card h3 {
-      margin: 1rem 0 0.5rem 0;
-    }
-    .project-card p {
-      padding: 0 1rem 1rem 1rem;
-      font-size: 0.9rem;
-    }
-    .more-btn {
-      display: inline-block;
-      margin-bottom: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #1e1e2f;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .more-btn:hover {
-      background-color: #333;
-    }
-    /* Modal Detailansicht */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 600px;
-      width: 90%;
-      position: relative;
-    }
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #333;
-    }
-    .back-btn {
-      margin-bottom: 1rem;
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: #1e1e2f;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .back-btn:hover {
-      background-color: #333;
-    }
+    .download-btn:hover { background: #388e3c; }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>Felix' Projekte</h1>
+    <h1>Meine Projekte</h1>
     <nav>
       <a href="index.html">Startseite</a>
       <a href="projects.html">Projekte</a>
@@ -133,95 +35,26 @@
   </header>
 
   <main>
-    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+    <div class="project-card">
+      <h2>🎵 JBL Box Halterung</h2>
+      <p>Eine stabile 3D-gedruckte Halterung für meine JBL GO2 Box.</p>
+      <p><em>📷 Bilder folgen bald</em></p>
+      <a href="downloads/jbl-go2-case-top.stl" class="download-btn" download>📥 Top STL herunterladen</a>
+      <a href="downloads/jbl-go2-case-bottom.stl" class="download-btn" download>📥 Bottom STL herunterladen</a>
+    </div>
 
-    <div class="projects-grid">
-      <!-- Projekt 1 -->
-      <div class="project-card" onclick="openModal('modal1')">
-        <img src="images/programming.png" alt="Programmieren Projekt">
-        <h3>Programmieren Projekt</h3>
-        <p>Ein kleiner Überblick über mein Programmierprojekt.</p>
-        <button class="more-btn" onclick="openModal('modal1'); event.stopPropagation();">Mehr</button>
-      </div>
+    <div class="project-card">
+      <h2>🔥 Feueralarm mit ESP32</h2>
+      <p>Ein smartes Feueralarmsystem, das über den ESP32 steuerbar ist.</p>
+      <p><em>📷 Bilder folgen bald</em></p>
+    </div>
 
-      <!-- Projekt 2 -->
-      <div class="project-card" onclick="openModal('modal2')">
-        <img src="images/arduino.jpg" alt="Arduino Projekt">
-        <h3>Arduino Projekt</h3>
-        <p>Ein Arduino-basiertes Projekt mit NFC und Sensoren.</p>
-        <button class="more-btn" onclick="openModal('modal2'); event.stopPropagation();">Mehr</button>
-      </div>
-
-      <!-- Projekt 3 -->
-      <div class="project-card" onclick="openModal('modal3')">
-        <img src="images/jbl.jpg" alt="JBL Box Halterung">
-        <h3>JBL Box Halterung</h3>
-        <p>3D-gedruckte Halterung für meine JBL Box.</p>
-        <button class="more-btn" onclick="openModal('modal3'); event.stopPropagation();">Mehr</button>
-      </div>
-
-      <!-- Projekt 4 -->
-      <div class="project-card" onclick="openModal('modal4')">
-        <img src="images/feueralarm.jpg" alt="Feueralarm ESP32">
-        <h3>Feueralarm ESP32</h3>
-        <p>Feueralarm mit ESP32 steuerbar.</p>
-        <button class="more-btn" onclick="openModal('modal4'); event.stopPropagation();">Mehr</button>
-      </div>
+    <div class="project-card">
+      <h2>🆘 SOS Schlüsselanhänger mit NFC</h2>
+      <p>Ein praktischer Schlüsselanhänger mit integriertem NFC-Chip,  
+         der im Notfall wichtige Infos überträgt.</p>
+      <p><em>📷 Bilder folgen bald</em></p>
     </div>
   </main>
-
-  <!-- Modals -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
-      <h2>Programmieren Projekt</h2>
-      <p>Hier steht die ausführliche Beschreibung meines Programmierprojekts. Zum Beispiel welche Programmiersprachen, Bibliotheken oder Funktionen verwendet wurden.</p>
-    </div>
-  </div>
-
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
-      <h2>Arduino Projekt</h2>
-      <p>Dieses Projekt nutzt Arduino und einen NFC-Chip. Details zu Schaltung, Code und Umsetzung können hier beschrieben werden.</p>
-    </div>
-  </div>
-
-  <div id="modal3" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
-      <h2>JBL Box Halterung</h2>
-      <p>3D-gedruckte Halterung für meine JBL Box. Material, Druckparameter und Design werden hier erklärt.</p>
-    </div>
-  </div>
-
-  <div id="modal4" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
-      <h2>Feueralarm ESP32</h2>
-      <p>Feueralarm mit ESP32, steuerbar über App oder Internet. Details zu Sensoren, Software und Aufbau werden hier beschrieben.</p>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2025 Felix – Alle Rechte vorbehalten</p>
-  </footer>
-
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-    }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-    // Modal schließen wenn Klick außerhalb
-    window.onclick = function(event) {
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => {
-        if(event.target == modal) modal.style.display = 'none';
-      });
-    }
-  </script>
-
 </body>
 </html>
