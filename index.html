@@ -20,15 +20,11 @@
       margin: 0;
       font-size: 2rem;
     }
-    nav {
-      margin-top: 0.5rem;
-    }
     nav a {
       color: #f0f0f0;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: bold;
-      transition: color 0.3s;
     }
     nav a:hover {
       color: #00aaff;
@@ -39,48 +35,49 @@
       padding: 1rem;
       text-align: center;
     }
-    .intro {
-      margin-bottom: 3rem;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 12px;
-    }
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
     .project-card {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 1.5rem;
-      width: 250px;
+      margin: 1rem auto;
+      max-width: 400px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      transition: transform 0.3s, background 0.3s;
-      cursor: pointer;
+      transition: transform 0.3s;
     }
     .project-card:hover {
-      transform: scale(1.05);
-      background: rgba(0, 170, 255, 0.1);
+      transform: scale(1.02);
     }
-    .project-card h3 {
-      margin-bottom: 0.5rem;
+    .project-card img {
+      width: 100%;
+      border-radius: 12px;
     }
-    .placeholder {
-      font-style: italic;
-      color: #aaa;
-      margin: 1rem 0;
-    }
-    footer {
-      background: #111122;
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.9rem;
+    .hidden-text {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
       color: #ccc;
-      margin-top: 3rem;
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #00aaff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .download-btn:hover {
+      background: #0088cc;
     }
   </style>
+  <script>
+    function toggleText(id) {
+      const text = document.getElementById(id);
+      text.style.display = text.style.display === "block" ? "none" : "block";
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -89,38 +86,23 @@
       <a href="index.html">Startseite</a>
       <a href="projects.html">Projekte</a>
       <a href="contact.html">Kontakt</a>
-      <a href="impressum.html">Impressum</a>
     </nav>
   </header>
 
   <main>
-    <div class="intro">
-      <h2>Willkommen!</h2>
-      <p>
-        Hey! Ich bin <strong>Felix</strong>, 14 Jahre alt.  
-        Ich programmiere gerne, bastle mit Elektronik und Technik  
-        und beschäftige mich besonders mit <strong>3D-Druck</strong>.  
-        Auf dieser Seite teile ich meine Projekte mit euch.
-      </p>
-    </div>
-
-    <div class="projects">
-      <div class="project-card">
-        <h3>Projekt 1: JBL Box Halterung</h3>
-        <div class="placeholder">📷 Bilder folgen bald</div>
-        <p>Eine stabile 3D-gedruckte Halterung für meine JBL Box.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>Projekt 2: Feueralarm mit ESP32</h3>
-        <div class="placeholder">📷 Bilder folgen bald</div>
-        <p>Ein smartes Feueralarmsystem, das ich mit einem ESP32 gebaut habe.</p>
+    <h2>Projekt 1: JBL Box Halterung</h2>
+    <div class="project-card" onclick="toggleText('jbl-text')">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkI..." alt="JBL Box Halterung">
+      <div id="jbl-text" class="hidden-text">
+        <p>
+          Eine 3D-gedruckte Halterung für meine JBL Box.  
+          Das Design ist stabil und praktisch, damit die Box immer sicher steht.
+        </p>
+        <a href="downloads/jbl_halterung.stl" class="download-btn" download>
+          📥 STL-Datei herunterladen
+        </a>
       </div>
     </div>
   </main>
-
-  <footer>
-    <p>© 2025 Felix – Alle Rechte vorbehalten</p>
-  </footer>
 </body>
 </html>
