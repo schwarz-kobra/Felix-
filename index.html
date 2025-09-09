@@ -8,35 +8,42 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f0f2f5;
-      color: #333;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      color: #f0f0f0;
     }
     header {
-      background-color: #1e1e2f;
-      color: white;
+      background: #111122;
       padding: 1.5rem;
       text-align: center;
     }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
     nav {
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
     nav a {
-      color: white;
+      color: #f0f0f0;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: bold;
+      transition: color 0.3s;
     }
     nav a:hover {
-      text-decoration: underline;
+      color: #00aaff;
     }
     main {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      text-align: center;
     }
     .intro {
-      text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
     }
     .projects {
       display: flex;
@@ -45,46 +52,37 @@
       justify-content: center;
     }
     .project-card {
-      background: white;
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      width: 300px;
-      text-align: center;
+      padding: 1.5rem;
+      width: 250px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      transition: transform 0.3s, background 0.3s;
       cursor: pointer;
-      transition: transform 0.3s;
     }
     .project-card:hover {
-      transform: scale(1.03);
-    }
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+      transform: scale(1.05);
+      background: rgba(0, 170, 255, 0.1);
     }
     .project-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .placeholder {
+      font-style: italic;
+      color: #aaa;
       margin: 1rem 0;
     }
     footer {
+      background: #111122;
+      padding: 1.5rem;
       text-align: center;
-      padding: 2rem;
       font-size: 0.9rem;
-      color: #666;
-    }
-    /* Responsive */
-    @media (max-width: 768px) {
-      .projects {
-        flex-direction: column;
-        align-items: center;
-      }
-      .project-card {
-        width: 90%;
-      }
+      color: #ccc;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Felix' Projekte</h1>
     <nav>
@@ -97,20 +95,26 @@
 
   <main>
     <div class="intro">
-      <h2>Willkommen auf meiner Projektseite!</h2>
-      <p>Hier zeige ich meine aktuellen Projekte aus Schule, Arduino, Programmierung und mehr.</p>
+      <h2>Willkommen!</h2>
+      <p>
+        Hey! Ich bin <strong>Felix</strong>, 14 Jahre alt.  
+        Ich programmiere gerne, bastle mit Elektronik und Technik  
+        und beschäftige mich besonders mit <strong>3D-Druck</strong>.  
+        Auf dieser Seite teile ich meine Projekte mit euch.
+      </p>
     </div>
 
     <div class="projects">
-      <div class="project-card" onclick="window.location.href='projects.html#projekt1'">
-        <img src="images/programming.png" alt="Projekt 1">
-        <h3>Projekt 1: Programmierung</h3>
-        <p>Kurzbeschreibung von Projekt 1</p>
+      <div class="project-card">
+        <h3>Projekt 1: JBL Box Halterung</h3>
+        <div class="placeholder">📷 Bilder folgen bald</div>
+        <p>Eine stabile 3D-gedruckte Halterung für meine JBL Box.</p>
       </div>
-      <div class="project-card" onclick="window.location.href='projects.html#projekt2'">
-        <img src="images/arduino.jpg" alt="Projekt 2">
-        <h3>Projekt 2: Arduino</h3>
-        <p>Kurzbeschreibung von Projekt 2</p>
+
+      <div class="project-card">
+        <h3>Projekt 2: Feueralarm mit ESP32</h3>
+        <div class="placeholder">📷 Bilder folgen bald</div>
+        <p>Ein smartes Feueralarmsystem, das ich mit einem ESP32 gebaut habe.</p>
       </div>
     </div>
   </main>
@@ -118,6 +122,5 @@
   <footer>
     <p>© 2025 Felix – Alle Rechte vorbehalten</p>
   </footer>
-
 </body>
 </html>
