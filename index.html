@@ -6,54 +6,82 @@
   <title>🎄 Meine Weihnachtsprodukte</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
-      background: #f5f5f5;
+      background: linear-gradient(#0b1d2a, #123);
+      color: #fff;
+      overflow-x: hidden;
     }
     header {
-      background: #b30000;
-      color: white;
-      padding: 20px;
+      background: linear-gradient(135deg, #b30000, #ff4d4d);
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
+    header h1 { margin: 0; font-size: 2.2rem; }
+    header p { opacity: 0.9; }
+
     .container {
-      padding: 20px;
+      padding: 30px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
     }
     .card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.95);
+      color: #222;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       overflow: hidden;
       text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
     .card img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: 220px;
+      object-fit: contain;
+      background: #fff;
+      padding: 10px;
     }
     .card h3 {
-      margin: 10px 0 5px;
+      margin: 15px 10px 10px;
+      font-size: 1.05rem;
     }
     .card a {
       display: inline-block;
       margin: 10px 0 20px;
-      padding: 10px 15px;
-      background: #008000;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #008000, #00b300);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 30px;
+      font-weight: bold;
     }
-    .card a:hover {
-      background: #006400;
-    }
+    .card a:hover { opacity: 0.9; }
+
     footer {
       text-align: center;
-      padding: 15px;
-      background: #222;
-      color: #ccc;
+      padding: 20px;
+      background: #111;
+      color: #aaa;
+    }
+
+    /* Schnee */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh); }
     }
   </style>
 </head>
@@ -67,7 +95,7 @@
 <main class="container">
 
   <div class="card">
-    <img src="https://via.placeholder.com/400x300" alt="Lötzinn Rauchabsorber">
+    <img src="https://m.media-amazon.com/images/I/71+qepHBDLL._AC_SL1500_.jpg" alt="Lötzinn Rauchabsorber">
     <h3>Lötzinn Abluftventilator – SPORTARC</h3>
     <a href="https://www.amazon.de/gp/product/B0CSYHL7X3" target="_blank">Zum Produkt (20,05 €)</a>
   </div>
@@ -109,6 +137,20 @@
   </div>
 
 </main>
+
+<script>
+  const snowCount = 50;
+  for (let i = 0; i < snowCount; i++) {
+    const snow = document.createElement('div');
+    snow.className = 'snowflake';
+    snow.textContent = '❄';
+    snow.style.left = Math.random() * 100 + 'vw';
+    snow.style.fontSize = (10 + Math.random() * 20) + 'px';
+    snow.style.animationDuration = (5 + Math.random() * 5) + 's';
+    snow.style.opacity = Math.random();
+    document.body.appendChild(snow);
+  }
+</script>
 
 <footer>
   <p>© 2025 – Frohe Weihnachten 🎄</p>
