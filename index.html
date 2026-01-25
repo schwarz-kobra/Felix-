@@ -138,7 +138,8 @@
 </main>
 
 <footer>
-  🎁✨ Weitere Geschenke folgen noch … ✨🎁
+  🎁✨ Weitere Geschenke folgen noch … ✨🎁 <br><br>
+  👀 Diese Website wurde <b><span id="counter">0</span></b> mal besucht
 </footer>
 
 <script>
@@ -154,4 +155,17 @@
 </script>
 
 </body>
+  <script>
+  let visits = localStorage.getItem("visits");
+
+  if (!visits) {
+    visits = 1;
+  } else {
+    visits = Number(visits) + 1;
+  }
+
+  localStorage.setItem("visits", visits);
+  document.getElementById("counter").innerText = visits;
+</script>
+
 </html>
