@@ -11,12 +11,14 @@
       margin: 0;
       background: linear-gradient(#1e3c72, #2a5298);
       color: #fff;
+      overflow-x: hidden;
     }
 
     header {
       background: linear-gradient(135deg, #ff9800, #ff5722);
       padding: 30px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
     .container {
@@ -33,11 +35,12 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       overflow: hidden;
       text-align: center;
+      position: relative;
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-8px) scale(1.02);
     }
 
     .card img {
@@ -56,11 +59,34 @@
       display: inline-block;
       margin-bottom: 20px;
       padding: 12px 20px;
-      background: #4caf50;
+      background: linear-gradient(135deg, #4caf50, #2e7d32);
       color: white;
       text-decoration: none;
       border-radius: 30px;
       font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #111;
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    /* Geschenk-Deko */
+    .gift {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -69,7 +95,7 @@
 
 <header>
   <h1>🎉 Meine Geburtstagswunschliste</h1>
-  <p>Das sind meine Wünsche 🎂</p>
+  <p>Das sind meine Wünsche 🎂🎁</p>
 </header>
 
 <main class="container">
@@ -81,18 +107,25 @@
     <a href="https://www.amazon.de/gp/product/B0DBHHDZ88?th=1" target="_blank">Zum Produkt</a>
   </div>
 
-  <!-- Creality Geschenkkarte -->
-  <div class="card">
-    <img src="https://cdn.shopify.com/s/files/1/0684/9940/7038/files/100.png?v=1744862036">
-    <h3>Creality Geschenkkarte</h3>
-    <a href="https://store.creality.com/de/products/creality-geschenkkarte" target="_blank">Zum Produkt</a>
-  </div>
-
-  <!-- ESP32-CAM -->
+  <!-- ESP32 CAM -->
   <div class="card">
     <img src="https://m.media-amazon.com/images/G/03/apparel/rcxgs/tile._CB483369910_.gif">
     <h3>ESP32-CAM Modul</h3>
     <a href="https://www.amazon.de/APKLVSR-Entwicklungsplatine-ESP32-CAM-Kamera-TF-Karten-Kompatibel/dp/B0FNMK821G" target="_blank">Zum Produkt</a>
+  </div>
+
+  <!-- Raspberry Pi 5 -->
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/G/03/apparel/rcxgs/tile._CB483369910_.gif">
+    <h3>Raspberry Pi 5 Starter Kit</h3>
+    <a href="https://www.amazon.de/BerryBase-Raspberry-Starterkit-vorinstalliert-Geschenkverpackung/dp/B0GD8M3DQV" target="_blank">Zum Produkt</a>
+  </div>
+
+  <!-- Creality Gutschein -->
+  <div class="card">
+    <img src="https://cdn.shopify.com/s/files/1/0684/9940/7038/files/100.png?v=1744862036">
+    <h3>Creality Geschenkkarte</h3>
+    <a href="https://store.creality.com/de/products/creality-geschenkkarte" target="_blank">Zum Produkt</a>
   </div>
 
   <!-- Racing Shifter -->
@@ -104,9 +137,21 @@
 
 </main>
 
-<footer style="text-align:center; padding:20px; background:#111;">
-  © 2026 – Meine Geburtstagsliste 🎁
+<footer>
+  🎁✨ Weitere Geschenke folgen noch … ✨🎁
 </footer>
+
+<script>
+  // Geschenk-Deko Animation
+  for (let i = 0; i < 25; i++) {
+    const gift = document.createElement("div");
+    gift.className = "gift";
+    gift.textContent = "🎁";
+    gift.style.left = Math.random() * 100 + "vw";
+    gift.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(gift);
+  }
+</script>
 
 </body>
 </html>
