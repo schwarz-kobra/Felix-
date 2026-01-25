@@ -3,23 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🎄 Meine Weihnachtsprodukte</title>
+  <title>🎉 Meine Geburtstagswunschliste</title>
+
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(#0b1d2a, #123);
+      background: linear-gradient(#1e3c72, #2a5298);
       color: #fff;
-      overflow-x: hidden;
     }
+
     header {
-      background: linear-gradient(135deg, #b30000, #ff4d4d);
-      padding: 30px 20px;
+      background: linear-gradient(135deg, #ff9800, #ff5722);
+      padding: 30px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
-    header h1 { margin: 0; font-size: 2.2rem; }
-    header p { opacity: 0.9; }
 
     .container {
       padding: 30px;
@@ -27,20 +25,21 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 25px;
     }
+
     .card {
-      background: rgba(255,255,255,0.95);
+      background: #fff;
       color: #222;
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       overflow: hidden;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      transition: 0.3s;
     }
+
     .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: translateY(-6px);
     }
+
     .card img {
       width: 100%;
       height: 220px;
@@ -48,143 +47,66 @@
       background: #fff;
       padding: 10px;
     }
+
     .card h3 {
-      margin: 15px 10px 10px;
-      font-size: 1.05rem;
+      margin: 15px;
     }
+
     .card a {
       display: inline-block;
-      margin: 10px 0 20px;
+      margin-bottom: 20px;
       padding: 12px 20px;
-      background: linear-gradient(135deg, #008000, #00b300);
+      background: #4caf50;
       color: white;
       text-decoration: none;
       border-radius: 30px;
       font-weight: bold;
     }
-    .card a:hover { opacity: 0.9; }
-    .badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: gold;
-      color: #222;
-      font-weight: bold;
-      padding: 5px 12px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #aaa;
-    }
-
-    /* Schnee */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: white;
-      user-select: none;
-      pointer-events: none;
-      z-index: 9999;
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      to { transform: translateY(110vh); }
-    }
   </style>
 </head>
+
 <body>
+
 <header>
-  <h1>🎅 Meine Weihnachtsprodukte</h1>
-  <p>Alle meine Geschenkideen & Produkte auf einen Blick</p>
+  <h1>🎉 Meine Geburtstagswunschliste</h1>
+  <p>Das sind meine Wünsche 🎂</p>
 </header>
+
 <main class="container">
 
-    <div class="card">
-    <div class="badge">1</div>
-    <img src="https://m.media-amazon.com/images/I/81ZnTvmcuHL._AC_SL1500_.jpg" alt="Raspberry Pi 5">
-    <h3>Raspberry Pi 5</h3>
-    <a href="https://www.amazon.de/cart/smart-wagon?newItems=fb4d8ec2-6e05-41f3-9a13-a036bb30f224,2&ref_=sw_refresh" target="_blank">Zum Produkt</a>
+  <!-- ESP32 -->
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/G/03/apparel/rcxgs/tile._CB483369910_.gif">
+    <h3>ESP32</h3>
+    <a href="https://www.amazon.de/gp/product/B0DBHHDZ88?th=1" target="_blank">Zum Produkt</a>
   </div>
 
+  <!-- Creality Geschenkkarte -->
   <div class="card">
-    <div class="badge">2</div>
-    <img src="https://m.media-amazon.com/images/I/71+qepHBDLL._AC_SL1500_.jpg" alt="Trust Gaming Maus">
-    <h3>Trust Gaming GXT 929 Helox – Kabellose Maus</h3>
-    <a href="https://www.amazon.de/gp/product/B0D7CH868D" target="_blank">Zum Produkt</a>
+    <img src="https://cdn.shopify.com/s/files/1/0684/9940/7038/files/100.png?v=1744862036">
+    <h3>Creality Geschenkkarte</h3>
+    <a href="https://store.creality.com/de/products/creality-geschenkkarte" target="_blank">Zum Produkt</a>
   </div>
 
+  <!-- ESP32-CAM -->
   <div class="card">
-    <div class="badge">3</div>
-    <img src="https://m.media-amazon.com/images/I/71uXbmcuTBL._AC_SL1500_.jpg" alt="ESP32-S3 Modul">
-    <h3>ESP32-S3 Modul</h3>
-    <a href="https://www.amazon.de/gp/product/B0DBHHDZ88" target="_blank">Zum Produkt</a>
+    <img src="https://m.media-amazon.com/images/G/03/apparel/rcxgs/tile._CB483369910_.gif">
+    <h3>ESP32-CAM Modul</h3>
+    <a href="https://www.amazon.de/APKLVSR-Entwicklungsplatine-ESP32-CAM-Kamera-TF-Karten-Kompatibel/dp/B0FNMK821G" target="_blank">Zum Produkt</a>
   </div>
 
+  <!-- Racing Shifter -->
   <div class="card">
-    <div class="badge">4</div>
-    <img src="https://m.media-amazon.com/images/I/41lgRjPecuL._AC_SL1001_.jpg" alt="LED Warnleuchte">
-    <h3>Industrielle LED-Warnleuchte mit Buzzer</h3>
-    <a href="https://www.amazon.de/gp/product/B0D8P5C6VR" target="_blank">Zum Produkt</a>
-  </div>
-
-  <div class="card">
-    <div class="badge">5</div>
-    <img src="https://m.media-amazon.com/images/I/51vWjNAOOHL._AC_SL1001_.jpg" alt="Rauchabzug">
-    <h3>Lötzinn Abluftventilator – SPORTARC</h3>
-    <a href="https://www.amazon.de/gp/product/B0CSYHL7X3" target="_blank">Zum Produkt (20,05 €)</a>
-  </div>
-
-  <div class="card">
-    <div class="badge">6</div>
-    <img src="https://m.media-amazon.com/images/I/61u0jd4Nq3L._AC_SL1500_.jpg" alt="DIY Wecker Lötset">
-    <h3>DIY Wecker Löt-Bausatz mit LED Anzeige</h3>
-    <a href="https://www.amazon.de/gp/product/B0F1FTG2V8" target="_blank">Zum Produkt</a>
-  </div>
-
-  
-
-  <div class="card">
-    <div class="badge">8</div>
-    <img src="https://m.media-amazon.com/images/I/61DQLbDUMXL._AC_SX300_SY300_QL70_ML2_.jpg" alt="Grafik Produkt">
-    <h3>Grafik Produkt</h3>
-    <a href="https://www.amazon.de/gp/product/B07TZ89BT7/ref=ewc_pr_img_1?smid=A3JWKAKR8XB7XF&psc=1" target="_blank">Zum Produkt</a>
-  </div>
-
-  <div class="card">
-    <div class="badge">9</div>
-    <img src="https://m.media-amazon.com/images/I/61RbbL6o-uL._AC_SL1500_.jpg" alt="Manueller Feueralarm">
-    <h3>Manueller Feueralarm / Zugstation</h3>
-    <a href="https://www.amazon.de/Feuermelder-Zugstation-Brandmelder-Tastensperre-Zugstationen/dp/B0C3RQ7C4C" target="_blank">Zum Produkt</a>
-  </div>
-
-  <div class="card">
-    <div class="badge">10</div>
-    <img src="https://m.media-amazon.com/images/I/61cL6HxC3uL._SL1000_.jpg" alt="Metall Schlüsselschalter">
-    <h3>Metall‑Schlüsselschalter 12 mm</h3>
-    <a href="https://www.amazon.de/Gebildet-Schl%C3%BCsselschalter-Metall-Vorverdrahtet-Rastender/dp/B0BFGGK856" target="_blank">Zum Produkt</a>
+    <img src="https://m.media-amazon.com/images/I/51JYmc+9eKL._SL1500_.jpg">
+    <h3>USB Racing Shifter (NBCP)</h3>
+    <a href="https://www.amazon.de/NBCP-Shifters-Rennspiele-Thrustmaster-kompatibel/dp/B0CP4TYMWN" target="_blank">Zum Produkt</a>
   </div>
 
 </main>
-<footer>
-  <p>© 2025 – Frohe Weihnachten 🎄</p>
+
+<footer style="text-align:center; padding:20px; background:#111;">
+  © 2026 – Meine Geburtstagsliste 🎁
 </footer>
-<script>
-  const snowCount = 50;
-  for (let i = 0; i < snowCount; i++) {
-    const snow = document.createElement('div');
-    snow.className = 'snowflake';
-    snow.textContent = '❄';
-    snow.style.left = Math.random() * 100 + 'vw';
-    snow.style.fontSize = (10 + Math.random() * 20) + 'px';
-    snow.style.animationDuration = (5 + Math.random() * 5) + 's';
-    snow.style.opacity = Math.random();
-    document.body.appendChild(snow);
-  }
-</script>
+
 </body>
 </html>
