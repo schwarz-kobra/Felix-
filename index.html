@@ -35,7 +35,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       overflow: hidden;
       text-align: center;
-      position: relative;
       transition: 0.3s;
     }
 
@@ -74,7 +73,6 @@
       font-size: 1.1rem;
     }
 
-    /* Geschenk-Deko */
     .gift {
       position: fixed;
       top: -50px;
@@ -121,7 +119,7 @@
     <a href="https://www.amazon.de/BerryBase-Raspberry-Starterkit-vorinstalliert-Geschenkverpackung/dp/B0GD8M3DQV" target="_blank">Zum Produkt</a>
   </div>
 
-  <!-- Creality Gutschein -->
+  <!-- Creality Geschenkkarte -->
   <div class="card">
     <img src="https://cdn.shopify.com/s/files/1/0684/9940/7038/files/100.png?v=1744862036">
     <h3>Creality Geschenkkarte</h3>
@@ -135,15 +133,53 @@
     <a href="https://www.amazon.de/4015918133968-Fernbus-Coach-Simulator-PC/dp/B01JLAW0C0" target="_blank">Zum Produkt</a>
   </div>
 
+  <!-- Neue Produkte: Set 1 -->
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/I/71bJpPq8MHL._AC_SL1500_.jpg">
+    <h3>Produkt 1</h3>
+    <a href="https://www.amazon.de/gp/product/B0FLPBCSN3" target="_blank">Zum Produkt</a>
+  </div>
+
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/I/41Xi-blskwL._AC_SL1001_.jpg">
+    <h3>Produkt 2</h3>
+    <a href="https://www.amazon.de/gp/product/B07X8Q1SRG" target="_blank">Zum Produkt</a>
+  </div>
+
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/I/81jIjC3O9bL._AC_SL1500_.jpg">
+    <h3>Produkt 3</h3>
+    <a href="https://www.amazon.de/gp/product/B08BV3L92G" target="_blank">Zum Produkt</a>
+  </div>
+
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/I/71YwmPhyJtL._AC_SL1500_.jpg">
+    <h3>Produkt 4</h3>
+    <a href="https://www.amazon.de/gp/product/B0DGX59RJL" target="_blank">Zum Produkt</a>
+  </div>
+
+  <div class="card">
+    <img src="https://m.media-amazon.com/images/I/71NsvdbZGxL._AC_SL1500_.jpg">
+    <h3>Produkt 5</h3>
+    <a href="https://www.amazon.de/gp/product/B0D8JDFSY1" target="_blank">Zum Produkt</a>
+  </div>
+
 </main>
 
 <footer>
-  🎁✨ Weitere Geschenke folgen noch … ✨🎁 <br><br>
-  👀 Diese Website wurde <b><span id="counter">0</span></b> mal besucht
+  👀 Diese Website wurde <b><span id="counter">0</span></b> mal besucht<br><br>
+  🎁✨ Weitere Geschenke folgen noch … ✨🎁
 </footer>
 
 <script>
-  // Geschenk-Deko Animation
+  // Besuchszähler
+  let visits = localStorage.getItem("visits");
+  if (!visits) visits = 1;
+  else visits = Number(visits) + 1;
+  localStorage.setItem("visits", visits);
+  document.getElementById("counter").innerText = visits;
+
+  // Geschenk-Animation
   for (let i = 0; i < 25; i++) {
     const gift = document.createElement("div");
     gift.className = "gift";
@@ -155,17 +191,4 @@
 </script>
 
 </body>
-  <script>
-  let visits = localStorage.getItem("visits");
-
-  if (!visits) {
-    visits = 1;
-  } else {
-    visits = Number(visits) + 1;
-  }
-
-  localStorage.setItem("visits", visits);
-  document.getElementById("counter").innerText = visits;
-</script>
-
 </html>
